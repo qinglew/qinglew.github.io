@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Cleo">
+    
+    <title>
+        
+            Windows 10操作系统为Visual Studio 2019配置PCL 1.11.0 |
+        
+        Learning Records
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Learning Records
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Windows 10操作系统为Visual Studio 2019配置PCL 1.11.0</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Cleo</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-04-15 20:44:04
+    </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="下载安装PCL"><a href="#下载安装PCL" class="headerlink" title="下载安装PCL"></a>下载安装PCL</h3><p>访问PCL的<a class="link"   target="_blank" rel="noopener" href="https://github.com/PointCloudLibrary/pcl" >Github官网<i class="fas fa-external-link-alt"></i></a>，进入<a href="">Release页面</a>，找到<em>PCL 1.11.0</em>，点击进入后在Assets下面可看到4个文件，前两个就是我们需要的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl8.png"></p>
+<p>首先安装<code>.exe</code>包，选择添加环境变量时，勾选为所有用户添加环境变量：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl3.png"></p>
+<p>安装路径可以自行更改，这里以<code>D:\pcl-1.11.0</code>为例，路径中最好不要含空格：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl9.png"></p>
+<p>安装过程中可能会提示路径过长，忽略即可。安装完后，打开安装目录下的<code>3rdParty\OpenNI2</code>目录，双击<code>OpenNI-Windows-x64-2.2.msi</code>，先点击<code>remove</code>删除已安装的OpenNI，删除后再次打开该安装文件，安装目录选择<code>D:\PCL-1.11.0\3rdParty\OpenNI2</code>。安装完毕后，将之前下载的<code>.zip</code>文件的所有内容解压到<code>D:\PCL-1.11.0\bin</code>下。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl10.png"></p>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>编辑用户的Path环境变量，添加以下内容：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl11.png"></p>
+<h3 id="配置Visual-Studio"><a href="#配置Visual-Studio" class="headerlink" title="配置Visual Studio"></a>配置Visual Studio</h3><h4 id="项目属性配置"><a href="#项目属性配置" class="headerlink" title="项目属性配置"></a>项目属性配置</h4><p>打开Visual Studio，创建空项目，选择编译环境为64位，Debug版本：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl13.png"></p>
+<p>选择菜单栏的“项目”—“属性”，设置调试环境为:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATH=D:\PCL-1.11.0\\bin;D:\PCL-1.11.0\\3rdParty\FLANN\bin;D:\PCL-1.11.0\\3rdParty\VTK\bin;D:\PCL-1.11.0\\3rdParty\OpenNI2\Tools</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl29.png"></p>
+<p>接着选择“C/C++”—“语言”，将符合模式设置为否：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl27.png"></p>
+<p>还要在所有选项中将SDL检查设置为否：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl28.png"></p>
+<h4 id="属性表配置"><a href="#属性表配置" class="headerlink" title="属性表配置"></a>属性表配置</h4><p>选择菜单栏的“视图”—“其他窗口”—“属性管理器”，在<code>Debug | 64</code>下新建项目属性表，命名为<code>PCL 1.11.0 Debug x64.props</code>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl14.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl15.png"></p>
+<p>创建完后，右键点击该属性表，选择属性：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl16.png"></p>
+<p>在C/C++的所有选项中，将SDL检查设置为否：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl23.png"></p>
+<p>接着配置Include目录：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl17.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl18.png"></p>
+<p>紧接着配置库目录：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl19.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl20.png"></p>
+<p>配置预处理器：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl21.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl22.png"></p>
+<p>接下来配置附加依赖项：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl24.png"></p>
+<p>Debug版本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">pcl_kdtreed.lib</span><br><span class="line">pcl_stereod.lib</span><br><span class="line">pcl_commond.lib</span><br><span class="line">pcl_recognitiond.lib</span><br><span class="line">pcl_keypointsd.lib</span><br><span class="line">pcl_surfaced.lib</span><br><span class="line">pcl_featuresd.lib</span><br><span class="line">pcl_registrationd.lib</span><br><span class="line">pcl_mld.lib</span><br><span class="line">pcl_trackingd.lib</span><br><span class="line">pcl_filtersd.lib</span><br><span class="line">pcl_sample_consensusd.lib</span><br><span class="line">pcl_octreed.lib</span><br><span class="line">pcl_visualizationd.lib</span><br><span class="line">pcl_searchd.lib</span><br><span class="line">pcl_io_plyd.lib</span><br><span class="line">pcl_outofcored.lib</span><br><span class="line">pcl_iod.lib</span><br><span class="line">pcl_segmentationd.lib</span><br><span class="line">pcl_peopled.lib</span><br><span class="line">vtkChartsCore-8.2-gd.lib</span><br><span class="line">vtkCommonColor-8.2-gd.lib</span><br><span class="line">vtkCommonComputationalGeometry-8.2-gd.lib</span><br><span class="line">vtkCommonCore-8.2-gd.lib</span><br><span class="line">vtkCommonDataModel-8.2-gd.lib</span><br><span class="line">vtkCommonExecutionModel-8.2-gd.lib</span><br><span class="line">vtkCommonMath-8.2-gd.lib</span><br><span class="line">vtkCommonMisc-8.2-gd.lib</span><br><span class="line">vtkCommonSystem-8.2-gd.lib</span><br><span class="line">vtkCommonTransforms-8.2-gd.lib</span><br><span class="line">vtkDICOMParser-8.2-gd.lib</span><br><span class="line">vtkDomainsChemistry-8.2-gd.lib</span><br><span class="line">vtkDomainsChemistryOpenGL2-8.2-gd.lib</span><br><span class="line">vtkdoubleconversion-8.2-gd.lib</span><br><span class="line">vtkexodusII-8.2-gd.lib</span><br><span class="line">vtkexpat-8.2-gd.lib</span><br><span class="line">vtkFiltersAMR-8.2-gd.lib</span><br><span class="line">vtkFiltersCore-8.2-gd.lib</span><br><span class="line">vtkFiltersExtraction-8.2-gd.lib</span><br><span class="line">vtkFiltersFlowPaths-8.2-gd.lib</span><br><span class="line">vtkFiltersGeneral-8.2-gd.lib</span><br><span class="line">vtkFiltersGeneric-8.2-gd.lib</span><br><span class="line">vtkFiltersGeometry-8.2-gd.lib</span><br><span class="line">vtkFiltersHybrid-8.2-gd.lib</span><br><span class="line">vtkFiltersHyperTree-8.2-gd.lib</span><br><span class="line">vtkFiltersImaging-8.2-gd.lib</span><br><span class="line">vtkFiltersModeling-8.2-gd.lib</span><br><span class="line">vtkFiltersParallel-8.2-gd.lib</span><br><span class="line">vtkFiltersParallelImaging-8.2-gd.lib</span><br><span class="line">vtkFiltersPoints-8.2-gd.lib</span><br><span class="line">vtkFiltersProgrammable-8.2-gd.lib</span><br><span class="line">vtkFiltersSelection-8.2-gd.lib</span><br><span class="line">vtkFiltersSMP-8.2-gd.lib</span><br><span class="line">vtkFiltersSources-8.2-gd.lib</span><br><span class="line">vtkFiltersStatistics-8.2-gd.lib</span><br><span class="line">vtkFiltersTexture-8.2-gd.lib</span><br><span class="line">vtkFiltersTopology-8.2-gd.lib</span><br><span class="line">vtkFiltersVerdict-8.2-gd.lib</span><br><span class="line">vtkfreetype-8.2-gd.lib</span><br><span class="line">vtkGeovisCore-8.2-gd.lib</span><br><span class="line">vtkgl2ps-8.2-gd.lib</span><br><span class="line">vtkglew-8.2-gd.lib</span><br><span class="line">vtkGUISupportMFC-8.2-gd.lib</span><br><span class="line">vtkhdf5-8.2-gd.lib</span><br><span class="line">vtkhdf5_hl-8.2-gd.lib</span><br><span class="line">vtkImagingColor-8.2-gd.lib</span><br><span class="line">vtkImagingCore-8.2-gd.lib</span><br><span class="line">vtkImagingFourier-8.2-gd.lib</span><br><span class="line">vtkImagingGeneral-8.2-gd.lib</span><br><span class="line">vtkImagingHybrid-8.2-gd.lib</span><br><span class="line">vtkImagingMath-8.2-gd.lib</span><br><span class="line">vtkImagingMorphological-8.2-gd.lib</span><br><span class="line">vtkImagingSources-8.2-gd.lib</span><br><span class="line">vtkImagingStatistics-8.2-gd.lib</span><br><span class="line">vtkImagingStencil-8.2-gd.lib</span><br><span class="line">vtkInfovisCore-8.2-gd.lib</span><br><span class="line">vtkInfovisLayout-8.2-gd.lib</span><br><span class="line">vtkInteractionImage-8.2-gd.lib</span><br><span class="line">vtkInteractionStyle-8.2-gd.lib</span><br><span class="line">vtkInteractionWidgets-8.2-gd.lib</span><br><span class="line">vtkIOAMR-8.2-gd.lib</span><br><span class="line">vtkIOAsynchronous-8.2-gd.lib</span><br><span class="line">vtkIOCityGML-8.2-gd.lib</span><br><span class="line">vtkIOCore-8.2-gd.lib</span><br><span class="line">vtkIOEnSight-8.2-gd.lib</span><br><span class="line">vtkIOExodus-8.2-gd.lib</span><br><span class="line">vtkIOExport-8.2-gd.lib</span><br><span class="line">vtkIOExportOpenGL2-8.2-gd.lib</span><br><span class="line">vtkIOExportPDF-8.2-gd.lib</span><br><span class="line">vtkIOGeometry-8.2-gd.lib</span><br><span class="line">vtkIOImage-8.2-gd.lib</span><br><span class="line">vtkIOImport-8.2-gd.lib</span><br><span class="line">vtkIOInfovis-8.2-gd.lib</span><br><span class="line">vtkIOLegacy-8.2-gd.lib</span><br><span class="line">vtkIOLSDyna-8.2-gd.lib</span><br><span class="line">vtkIOMINC-8.2-gd.lib</span><br><span class="line">vtkIOMovie-8.2-gd.lib</span><br><span class="line">vtkIONetCDF-8.2-gd.lib</span><br><span class="line">vtkIOParallel-8.2-gd.lib</span><br><span class="line">vtkIOParallelXML-8.2-gd.lib</span><br><span class="line">vtkIOPLY-8.2-gd.lib</span><br><span class="line">vtkIOSegY-8.2-gd.lib</span><br><span class="line">vtkIOSQL-8.2-gd.lib</span><br><span class="line">vtkIOTecplotTable-8.2-gd.lib</span><br><span class="line">vtkIOVeraOut-8.2-gd.lib</span><br><span class="line">vtkIOVideo-8.2-gd.lib</span><br><span class="line">vtkIOXML-8.2-gd.lib</span><br><span class="line">vtkIOXMLParser-8.2-gd.lib</span><br><span class="line">vtkjpeg-8.2-gd.lib</span><br><span class="line">vtkjsoncpp-8.2-gd.lib</span><br><span class="line">vtklibharu-8.2-gd.lib</span><br><span class="line">vtklibxml2-8.2-gd.lib</span><br><span class="line">vtklz4-8.2-gd.lib</span><br><span class="line">vtklzma-8.2-gd.lib</span><br><span class="line">vtkmetaio-8.2-gd.lib</span><br><span class="line">vtkNetCDF-8.2-gd.lib</span><br><span class="line">vtkogg-8.2-gd.lib</span><br><span class="line">vtkParallelCore-8.2-gd.lib</span><br><span class="line">vtkpng-8.2-gd.lib</span><br><span class="line">vtkproj-8.2-gd.lib</span><br><span class="line">vtkpugixml-8.2-gd.lib</span><br><span class="line">vtkRenderingAnnotation-8.2-gd.lib</span><br><span class="line">vtkRenderingContext2D-8.2-gd.lib</span><br><span class="line">vtkRenderingContextOpenGL2-8.2-gd.lib</span><br><span class="line">vtkRenderingCore-8.2-gd.lib</span><br><span class="line">vtkRenderingExternal-8.2-gd.lib</span><br><span class="line">vtkRenderingFreeType-8.2-gd.lib</span><br><span class="line">vtkRenderingGL2PSOpenGL2-8.2-gd.lib</span><br><span class="line">vtkRenderingImage-8.2-gd.lib</span><br><span class="line">vtkRenderingLabel-8.2-gd.lib</span><br><span class="line">vtkRenderingLOD-8.2-gd.lib</span><br><span class="line">vtkRenderingOpenGL2-8.2-gd.lib</span><br><span class="line">vtkRenderingVolume-8.2-gd.lib</span><br><span class="line">vtkRenderingVolumeOpenGL2-8.2-gd.lib</span><br><span class="line">vtksqlite-8.2-gd.lib</span><br><span class="line">vtksys-8.2-gd.lib</span><br><span class="line">vtktheora-8.2-gd.lib</span><br><span class="line">vtktiff-8.2-gd.lib</span><br><span class="line">vtkverdict-8.2-gd.lib</span><br><span class="line">vtkViewsContext2D-8.2-gd.lib</span><br><span class="line">vtkViewsCore-8.2-gd.lib</span><br><span class="line">vtkViewsInfovis-8.2-gd.lib</span><br><span class="line">vtkzlib-8.2-gd.lib</span><br><span class="line">flann-gd.lib</span><br><span class="line">flann_cpp-gd.lib</span><br><span class="line">flann_cpp_s-gd.lib</span><br><span class="line">flann_s-gd.lib</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h3><h4 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h4><p>这里我们写上一段测试代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/octree/octree.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/thread/thread.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/visualization/pcl_visualizer.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">srand</span>((<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">	pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">	cloud-&gt;width = <span class="number">1000</span>;</span><br><span class="line">	cloud-&gt;height = <span class="number">1</span>;</span><br><span class="line">	cloud-&gt;points.<span class="built_in">resize</span>(cloud-&gt;width * cloud-&gt;height);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; cloud-&gt;points.<span class="built_in">size</span>(); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		cloud-&gt;points[i].x = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">		cloud-&gt;points[i].y = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">		cloud-&gt;points[i].z = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pcl::<span class="function">octree::OctreePointCloudSearch&lt;pcl::PointXYZ&gt; <span class="title">octree</span><span class="params">(<span class="number">0.1</span>)</span></span>;</span><br><span class="line">	octree.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">	octree.<span class="built_in">addPointsFromInputCloud</span>();</span><br><span class="line">	pcl::PointXYZ searchPoint;</span><br><span class="line">	searchPoint.x = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	searchPoint.y = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	searchPoint.z = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line"></span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;pointIdxRadiusSearch;</span><br><span class="line">	vector&lt;<span class="keyword">float</span>&gt;pointRadiusSquaredDistance;</span><br><span class="line">	<span class="keyword">float</span> radius = <span class="number">256.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Neighbors within radius search at (&quot;</span> &lt;&lt; searchPoint.x</span><br><span class="line">		&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; searchPoint.y</span><br><span class="line">		&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; searchPoint.z</span><br><span class="line">		&lt;&lt; <span class="string">&quot;) with radius=&quot;</span> &lt;&lt; radius &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">if</span> (octree.<span class="built_in">radiusSearch</span>(searchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; pointIdxRadiusSearch.<span class="built_in">size</span>(); ++i)</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;    &quot;</span> &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].x</span><br><span class="line">			&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].y</span><br><span class="line">			&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].z</span><br><span class="line">			&lt;&lt; <span class="string">&quot; (squared distance: &quot;</span> &lt;&lt; pointRadiusSquaredDistance[i] &lt;&lt; <span class="string">&quot;)&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt;<span class="built_in">viewer</span>(<span class="keyword">new</span> pcl::visualization::<span class="built_in">PCLVisualizer</span>(<span class="string">&quot;显示点云&quot;</span>));</span><br><span class="line">	viewer-&gt;<span class="built_in">setBackgroundColor</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt;<span class="built_in">target_color</span>(cloud, <span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt;(cloud, target_color, <span class="string">&quot;target cloud&quot;</span>);</span><br><span class="line">	viewer-&gt;<span class="built_in">setPointCloudRenderingProperties</span>(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, <span class="number">1</span>, <span class="string">&quot;target cloud&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!viewer-&gt;<span class="built_in">wasStopped</span>())</span><br><span class="line">	&#123;</span><br><span class="line">		viewer-&gt;<span class="built_in">spinOnce</span>(<span class="number">100</span>);</span><br><span class="line">		boost::this_thread::<span class="built_in">sleep</span>(boost::posix_time::<span class="built_in">microseconds</span>(<span class="number">1000</span>));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Debug运行"><a href="#Debug运行" class="headerlink" title="Debug运行"></a>Debug运行</h4><p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/pcl30.png"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>以上就是在Windows 10操作系统下，为Visual Studio 2019配置点云库PCL 1.11.0的过程。当然，上面用的是debug版本，也可以换成release版本，只要附加依赖的内容换成release的内容即可，这里给出release版本的附加依赖的内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">pcl_kdtreed.lib</span><br><span class="line">pcl_stereod.lib</span><br><span class="line">pcl_commond.lib</span><br><span class="line">pcl_recognitiond.lib</span><br><span class="line">pcl_keypointsd.lib</span><br><span class="line">pcl_surfaced.lib</span><br><span class="line">pcl_featuresd.lib</span><br><span class="line">pcl_registrationd.lib</span><br><span class="line">pcl_mld.lib</span><br><span class="line">pcl_trackingd.lib</span><br><span class="line">pcl_filtersd.lib</span><br><span class="line">pcl_sample_consensusd.lib</span><br><span class="line">pcl_octreed.lib</span><br><span class="line">pcl_visualizationd.lib</span><br><span class="line">pcl_searchd.lib</span><br><span class="line">pcl_io_plyd.lib</span><br><span class="line">pcl_outofcored.lib</span><br><span class="line">pcl_iod.lib</span><br><span class="line">pcl_segmentationd.lib</span><br><span class="line">pcl_peopled.lib</span><br><span class="line">vtkChartsCore-8.2.lib</span><br><span class="line">vtkCommonColor-8.2.lib</span><br><span class="line">vtkCommonComputationalGeometry-8.2.lib</span><br><span class="line">vtkCommonCore-8.2.lib</span><br><span class="line">vtkCommonDataModel-8.2.lib</span><br><span class="line">vtkCommonExecutionModel-8.2.lib</span><br><span class="line">vtkCommonMath-8.2.lib</span><br><span class="line">vtkCommonMisc-8.2.lib</span><br><span class="line">vtkCommonSystem-8.2.lib</span><br><span class="line">vtkCommonTransforms-8.2.lib</span><br><span class="line">vtkDICOMParser-8.2.lib</span><br><span class="line">vtkDomainsChemistry-8.2.lib</span><br><span class="line">vtkDomainsChemistryOpenGL2-8.2.lib</span><br><span class="line">vtkdoubleconversion-8.2.lib</span><br><span class="line">vtkexodusII-8.2.lib</span><br><span class="line">vtkexpat-8.2.lib</span><br><span class="line">vtkFiltersAMR-8.2.lib</span><br><span class="line">vtkFiltersCore-8.2.lib</span><br><span class="line">vtkFiltersExtraction-8.2.lib</span><br><span class="line">vtkFiltersFlowPaths-8.2.lib</span><br><span class="line">vtkFiltersGeneral-8.2.lib</span><br><span class="line">vtkFiltersGeneric-8.2.lib</span><br><span class="line">vtkFiltersGeometry-8.2.lib</span><br><span class="line">vtkFiltersHybrid-8.2.lib</span><br><span class="line">vtkFiltersHyperTree-8.2.lib</span><br><span class="line">vtkFiltersImaging-8.2.lib</span><br><span class="line">vtkFiltersModeling-8.2.lib</span><br><span class="line">vtkFiltersParallel-8.2.lib</span><br><span class="line">vtkFiltersParallelImaging-8.2.lib</span><br><span class="line">vtkFiltersPoints-8.2.lib</span><br><span class="line">vtkFiltersProgrammable-8.2.lib</span><br><span class="line">vtkFiltersSelection-8.2.lib</span><br><span class="line">vtkFiltersSMP-8.2.lib</span><br><span class="line">vtkFiltersSources-8.2.lib</span><br><span class="line">vtkFiltersStatistics-8.2.lib</span><br><span class="line">vtkFiltersTexture-8.2.lib</span><br><span class="line">vtkFiltersTopology-8.2.lib</span><br><span class="line">vtkFiltersVerdict-8.2.lib</span><br><span class="line">vtkfreetype-8.2.lib</span><br><span class="line">vtkGeovisCore-8.2.lib</span><br><span class="line">vtkgl2ps-8.2.lib</span><br><span class="line">vtkglew-8.2.lib</span><br><span class="line">vtkGUISupportMFC-8.2.lib</span><br><span class="line">vtkhdf5-8.2.lib</span><br><span class="line">vtkhdf5_hl-8.2.lib</span><br><span class="line">vtkImagingColor-8.2.lib</span><br><span class="line">vtkImagingCore-8.2.lib</span><br><span class="line">vtkImagingFourier-8.2.lib</span><br><span class="line">vtkImagingGeneral-8.2.lib</span><br><span class="line">vtkImagingHybrid-8.2.lib</span><br><span class="line">vtkImagingMath-8.2.lib</span><br><span class="line">vtkImagingMorphological-8.2.lib</span><br><span class="line">vtkImagingSources-8.2.lib</span><br><span class="line">vtkImagingStatistics-8.2.lib</span><br><span class="line">vtkImagingStencil-8.2.lib</span><br><span class="line">vtkInfovisCore-8.2.lib</span><br><span class="line">vtkInfovisLayout-8.2.lib</span><br><span class="line">vtkInteractionImage-8.2.lib</span><br><span class="line">vtkInteractionStyle-8.2.lib</span><br><span class="line">vtkInteractionWidgets-8.2.lib</span><br><span class="line">vtkIOAMR-8.2.lib</span><br><span class="line">vtkIOAsynchronous-8.2.lib</span><br><span class="line">vtkIOCityGML-8.2.lib</span><br><span class="line">vtkIOCore-8.2.lib</span><br><span class="line">vtkIOEnSight-8.2.lib</span><br><span class="line">vtkIOExodus-8.2.lib</span><br><span class="line">vtkIOExport-8.2.lib</span><br><span class="line">vtkIOExportOpenGL2-8.2.lib</span><br><span class="line">vtkIOExportPDF-8.2.lib</span><br><span class="line">vtkIOGeometry-8.2.lib</span><br><span class="line">vtkIOImage-8.2.lib</span><br><span class="line">vtkIOImport-8.2.lib</span><br><span class="line">vtkIOInfovis-8.2.lib</span><br><span class="line">vtkIOLegacy-8.2.lib</span><br><span class="line">vtkIOLSDyna-8.2.lib</span><br><span class="line">vtkIOMINC-8.2.lib</span><br><span class="line">vtkIOMovie-8.2.lib</span><br><span class="line">vtkIONetCDF-8.2.lib</span><br><span class="line">vtkIOParallel-8.2.lib</span><br><span class="line">vtkIOParallelXML-8.2.lib</span><br><span class="line">vtkIOPLY-8.2.lib</span><br><span class="line">vtkIOSegY-8.2.lib</span><br><span class="line">vtkIOSQL-8.2.lib</span><br><span class="line">vtkIOTecplotTable-8.2.lib</span><br><span class="line">vtkIOVeraOut-8.2.lib</span><br><span class="line">vtkIOVideo-8.2.lib</span><br><span class="line">vtkIOXML-8.2.lib</span><br><span class="line">vtkIOXMLParser-8.2.lib</span><br><span class="line">vtkjpeg-8.2.lib</span><br><span class="line">vtkjsoncpp-8.2.lib</span><br><span class="line">vtklibharu-8.2.lib</span><br><span class="line">vtklibxml2-8.2.lib</span><br><span class="line">vtklz4-8.2.lib</span><br><span class="line">vtklzma-8.2.lib</span><br><span class="line">vtkmetaio-8.2.lib</span><br><span class="line">vtkNetCDF-8.2.lib</span><br><span class="line">vtkogg-8.2.lib</span><br><span class="line">vtkParallelCore-8.2.lib</span><br><span class="line">vtkpng-8.2.lib</span><br><span class="line">vtkproj-8.2.lib</span><br><span class="line">vtkpugixml-8.2.lib</span><br><span class="line">vtkRenderingAnnotation-8.2.lib</span><br><span class="line">vtkRenderingContext2D-8.2.lib</span><br><span class="line">vtkRenderingContextOpenGL2-8.2.lib</span><br><span class="line">vtkRenderingCore-8.2.lib</span><br><span class="line">vtkRenderingExternal-8.2.lib</span><br><span class="line">vtkRenderingFreeType-8.2.lib</span><br><span class="line">vtkRenderingGL2PSOpenGL2-8.2.lib</span><br><span class="line">vtkRenderingImage-8.2.lib</span><br><span class="line">vtkRenderingLabel-8.2.lib</span><br><span class="line">vtkRenderingLOD-8.2.lib</span><br><span class="line">vtkRenderingOpenGL2-8.2.lib</span><br><span class="line">vtkRenderingVolume-8.2.lib</span><br><span class="line">vtkRenderingVolumeOpenGL2-8.2.lib</span><br><span class="line">vtksqlite-8.2.lib</span><br><span class="line">vtksys-8.2.lib</span><br><span class="line">vtktheora-8.2.lib</span><br><span class="line">vtktiff-8.2.lib</span><br><span class="line">vtkverdict-8.2.lib</span><br><span class="line">vtkViewsContext2D-8.2.lib</span><br><span class="line">vtkViewsCore-8.2.lib</span><br><span class="line">vtkViewsInfovis-8.2.lib</span><br><span class="line">vtkzlib-8.2.lib</span><br><span class="line">flann.lib</span><br><span class="line">flann_cpp.lib</span><br><span class="line">flann_cpp_s.lib</span><br><span class="line">flann_s.lib</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/04/12/hello-world/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Cleo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

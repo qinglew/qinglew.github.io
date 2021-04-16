@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            Hello World - Github+Hexo搭建个人博客 |
         
         Learning Records
     </title>
@@ -118,7 +118,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Hello World</span>
+            <span class="title-hover-animation">Hello World - Github+Hexo搭建个人博客</span>
         </div>
 
         
@@ -153,17 +153,66 @@
         
 
         <div class="article-content markdown-body">
-            <p>Welcome to <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h3 id="为Github配置ssh"><a href="#为Github配置ssh" class="headerlink" title="为Github配置ssh"></a>为Github配置ssh</h3><h4 id="生成新的ssh密钥"><a href="#生成新的ssh密钥" class="headerlink" title="生成新的ssh密钥"></a>生成新的ssh密钥</h4><ol>
+<li><p>打开终端，Windows上最好使用Git Bash，配置用户名和邮箱：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">&quot;your_username&quot;</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.email <span class="string">&quot;your_email@example.com&quot;</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p>生成新的ssh密钥</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -b <span class="number">4096</span> -C <span class="string">&quot;your_email@example.com&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>当提示输入一个文件来存储密钥时，按回车选择默认文件就好</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> Enter a file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (~/.ssh/id_rsa): [Press Enter]</span></span><br></pre></td></tr></table></figure></li>
+<li><p>当提示输入私钥密码时，按回车表示不使用私钥密码，也可以自行设置</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function">Enter <span class="title">passphrase</span> <span class="params">(empty <span class="keyword">for</span> no passphrase)</span>: [Type a passphrase or press enter]</span></span><br><span class="line"><span class="function">&gt; Enter same passphrase again: [Type a passphrase or press enter]</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>生成好后，密钥保存在<code>~/.ssh/id_rsa</code>文件中。</p>
+<h4 id="添加ssh密钥到ssh代理"><a href="#添加ssh密钥到ssh代理" class="headerlink" title="添加ssh密钥到ssh代理"></a>添加ssh密钥到ssh代理</h4><ol>
+<li><p>后台启动ssh-agent</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Agent pid 59566</span></span><br></pre></td></tr></table></figure></li>
+<li><p>根据官网的配置教程，如果你的系统是macOS Sierra 10.12.2或更高版本，需要修改<code>~/.ssh/config</code>文件自动加载密钥到ssh-agent，并在密钥链存储私钥密码。</p>
+<ul>
+<li><p>检查<code>~/.ssh/config</code>文件是否存在</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> open ~/.ssh/config</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> The file /Users/you/.ssh/config does not exist.</span></span><br></pre></td></tr></table></figure></li>
+<li><p>如果文件不存在，则创建</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> touch ~/.ssh/config</span></span><br></pre></td></tr></table></figure></li>
+<li><p>编辑<code>~/.ssh/config</code>文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">	Add KeysToAgent yes</span><br><span class="line">	UseKeychain yes</span><br><span class="line">	IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>添加你的ssh私钥到ssh-agent并且存储私钥密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-add -K ~/.ssh/id_rsa</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="添加ssh公钥到Github账号"><a href="#添加ssh公钥到Github账号" class="headerlink" title="添加ssh公钥到Github账号"></a>添加ssh公钥到Github账号</h4><ol>
+<li><p>复制ssh公钥，可以手动复制，也可以使用命令复制</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> clip &lt; ~/.ssh/id_rsa.pub</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Copies the contents of the id_rsa.pub file to your clipboard</span></span><br></pre></td></tr></table></figure></li>
+<li><p>打开Github，选择用户下的设置</p>
+<img style="clear: both; margin: auto; display: block; zoom: 50%;" src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/github_setting.png"/></li>
+<li><p>选择”SSH and GPG keys”</p>
+<img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/ssh_and_gpg_keys.png" style="clear: both; margin: auto; display: block; zoom:50%;" /></li>
+<li><p>点击”New SSH key”</p>
+<img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/new_ssh_key.png" style="zoom:50%; clear: both; display: block; margin: auto;" /></li>
+<li><p>将刚才复制的ssh公钥粘贴到key一栏，点击“Add SSH key”添加公钥</p>
+<img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/add_ssh_key.png" style="zoom: 40%; clear: both; display: block; margin: auto;" /></li>
+</ol>
+<h4 id="测试配置是否成功"><a href="#测试配置是否成功" class="headerlink" title="测试配置是否成功"></a>测试配置是否成功</h4><ol>
+<li><p>打开终端或Git Bash，输入命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh -T git@github.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Attempts to ssh to Github</span></span><br></pre></td></tr></table></figure>
+
+<p>你可能会看到如下警告：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The authenticity of host <span class="string">&#x27;github.com (IP ADDRESS)&#x27;</span> can<span class="string">&#x27;t be established.</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Are you sure you want to <span class="built_in">continue</span> connecting (yes/no)?</span></span><br></pre></td></tr></table></figure></li>
+<li><p>输入”yes”，如果显示以下信息，说明配置成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> Hi username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> provide shell access.</span></span><br></pre></td></tr></table></figure></li>
+<li><p>如果你接收到了一个“permission denied”消息，说明配置失败，请参考<a class="link"   target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/error-permission-denied-publickey" >Error: Permission denied (publickey)<i class="fas fa-external-link-alt"></i></a>。</p>
+</li>
+</ol>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><h3 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h3><h3 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h3><h3 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h3><h4 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h4 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h4 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h4 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
 

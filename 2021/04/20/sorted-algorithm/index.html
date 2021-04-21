@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Cleo">
+    <meta name="description" content="A personal blog based on github and hexo">
+    <meta name="author" content="Cleo">
+    
+    <title>
+        
+            十大经典排序算法 |
+        
+        Keep Learning
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Keep Learning
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">十大经典排序算法</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Cleo</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-04-20 23:32:20
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1. 冒泡排序"></a>1. 冒泡排序</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>冒泡排序是一种比较排序，且会交换元素位置。以从小到大排序为例，每轮排序过程会比较相邻两数大小，如果大数在前，则交换相邻两束位置，因此每轮将得到剩余元素中的最大值。</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubble_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> did_swap;</span><br><span class="line">  	<span class="keyword">int</span> temp;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">      	did_swap = <span class="literal">false</span>;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len - i - <span class="number">1</span>; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">          	<span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">              	temp = arr[j];</span><br><span class="line">              	arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">              	arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">              	did_swap = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="keyword">if</span> (!did_swap)</span><br><span class="line">          	<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p>最好情况下，数组已经排好序，仍需进行1轮的比较，时间复杂度为$O\left(n\right)$。最坏情况下，数组为倒序，总共需要$n^2$次比较，因此最坏时间复杂度为$O\left(n^2\right)$；平均时间复杂度为$O\left(n^2\right)$。</p>
+<p>由于使用原数组进行元素交换排序，借用一个临时变量，因此时间复杂度为$O\left(1\right)$。</p>
+<h4 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h4><p>使用交换元素进行排序，如果数相同，不会进行交换位置，因此冒泡排序为稳定排序。</p>
+<h3 id="2-选择排序"><a href="#2-选择排序" class="headerlink" title="2.选择排序"></a>2.选择排序</h3><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>选择排序是一种简单直观的排序算法，它的工作原理是首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selection_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> min_index, temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        min_index = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; len; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[min_index] &gt; arr[j])</span><br><span class="line">                min_index = j;</span><br><span class="line">        &#125;</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        arr[i] = arr[min_index];</span><br><span class="line">        arr[min_index] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p>无论什么数据进去，都会进行进行$\frac{n\left(n-1\right)}{2}$次比较，因此时间复杂度无论最好最坏还是平均，都是$O\left(n^2\right)$。</p>
+<p>由于只是借用临时变量来存储最小值索引和交换时所用的临时变量，因此空间复杂度为$O\left(1\right)$。</p>
+<h4 id="稳定性-1"><a href="#稳定性-1" class="headerlink" title="稳定性"></a>稳定性</h4><p>选择排序是不稳定排序，例如5、8、5、2、9这个序列，第一次将第一个5和2交换，第一个5到了第二个5的后面。</p>
+<h3 id="3-插入排序"><a href="#3-插入排序" class="headerlink" title="3.插入排序"></a>3.插入排序</h3><h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><p>插入排序的基本思想是将一个记录插入到已经排好序的有序表中，从而一个新的、记录数增1的有序表。插入排序需要在有序表中查找合适的位置，通常从后往前扫描，找到相应的位置并插入。</p>
+<h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = arr[i]; <span class="comment">// 注意下标</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; arr[j - <span class="number">1</span>] &gt; temp; --j)</span><br><span class="line">        &#123;</span><br><span class="line">            arr[j] = arr[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp, pre;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        pre = i - <span class="number">1</span>; <span class="comment">// 注意下标</span></span><br><span class="line">        <span class="keyword">while</span> (pre &gt;= <span class="number">0</span> &amp;&amp; arr[pre] &gt; temp)</span><br><span class="line">        &#123;</span><br><span class="line">            arr[pre + <span class="number">1</span>] = arr[pre];</span><br><span class="line">            --pre;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[pre + <span class="number">1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂度分析-2"><a href="#复杂度分析-2" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p>最坏情况下数组逆序，需要比较$\frac{n\left(n - 1\right)}{2}$次，时间复杂度为$O\left(n^2\right)$。最好情况下，数组有序，只需要跟前一个元素比较一次，共$n-1$次，时间复杂度为$O\left(n\right)$。平均时间复杂度为$O\left(n^2\right)$。</p>
+<p>空间复杂度为$O\left(1\right)$。</p>
+<h4 id="稳定性-2"><a href="#稳定性-2" class="headerlink" title="稳定性"></a>稳定性</h4><p>由于比较用的是<code>arr[pre] &gt; temp</code>，因此不会向左查询位置时，不会越过与自身相同的值，为稳定排序。</p>
+<h3 id="4-希尔排序"><a href="#4-希尔排序" class="headerlink" title="4. 希尔排序"></a>4. 希尔排序</h3><h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>希尔排序可以说是对插入排序的一种改进，通过设置增量将序列分组进行插入排序。随着增量逐渐减少，每组包含的数越来越多，当增量减为1时，整个序列恰好被分成一组，算法便终止。增量为几，序列就被分成几组。下面来看一个具体的排序案例：</p>
+<p>假设序列长度为<code>len</code>，我们设置增量<code>gap</code>的初值为<code>len / 2</code>，并以<code>gap /= 2</code>的方式减少增量形成一个增量序列：$\left(\frac{1}{2}len，\frac{1}{4}len，…，1\right)$。这里的除法为整除，舍弃余数部分。希尔排序的增量序列的选择与证明是个数学难题，我们选择的这个增量序列是比较常用的，也是希尔建议的增量，称为希尔增量，但其实这个增量序列不是最优的。下面是整个过程：</p>
+<p><img src="https://images2015.cnblogs.com/blog/1024555/201611/1024555-20161128110416068-1421707828.png" style="zoom: 50%;" /></p>
+<h4 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shell_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> gap = len / <span class="number">2</span>; gap &gt; <span class="number">0</span>; gap /= <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* 分组插入排序 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = gap; i &lt; len; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">            <span class="keyword">int</span> j = i;</span><br><span class="line">            <span class="keyword">while</span> (j - gap &gt;= <span class="number">0</span> &amp;&amp; arr[j - gap] &gt; arr[j])</span><br><span class="line">            &#123;</span><br><span class="line">                arr[j] = arr[j - gap];</span><br><span class="line">                j -= gap;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码实现时，内部for循环i的初值设置为gap，是因为下标为gap的元素即第一组的第二个元素，插入排序一般从第二个元素开始。</p>
+<h4 id="复杂度分析-3"><a href="#复杂度分析-3" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p>希尔排序最好情况下时间复杂度为$O\left(n\right)$，最坏情况下时间复杂度为$O\left(n^2\right)$。平均时间复杂度为$O\left(n^{1.3}\right)$。这里说的应该不一定指的是使用上述的增量序列的时间复杂度。</p>
+<p>由于只是借助几个临时变量，且是在原数组上进行操作的，并未有额外的内存开销，因此空间复杂度为$O\left(1\right)$。</p>
+<h4 id="稳定性-3"><a href="#稳定性-3" class="headerlink" title="稳定性"></a>稳定性</h4><p>由于通过增量进行分组并分别在组内排序，希尔排序为不稳定排序。</p>
+<p>未完待续…</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/04/16/algorithm1/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">剑指Offer09 - 用两个栈实现队列</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Cleo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

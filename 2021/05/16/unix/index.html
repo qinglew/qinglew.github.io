@@ -62,7 +62,7 @@
                             <a class=""
                                href="/"
                             >
-                                首页
+                                HOME
                             </a>
                         </li>
                     
@@ -70,7 +70,7 @@
                             <a class=""
                                href="/archives"
                             >
-                                归档
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -78,7 +78,7 @@
                             <a class=""
                                href="/categories"
                             >
-                                分类
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -86,7 +86,7 @@
                             <a class=""
                                href="/tags"
                             >
-                                标签
+                                TAGS
                             </a>
                         </li>
                     
@@ -94,7 +94,7 @@
                             <a class=""
                                href="/about"
                             >
-                                关于
+                                ABOUT
                             </a>
                         </li>
                     
@@ -115,27 +115,27 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">关于</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -853,12 +853,109 @@
 <h3 id="5-12-实现细节"><a href="#5-12-实现细节" class="headerlink" title="5.12 实现细节"></a>5.12 实现细节</h3><p>标准I/O库最终都要调用第3章说明中的I/O例程。每个标准I/O流都有一个与其相关联的文件描述符，可以对一个流调用fileno函数以获得其描述符。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fileno</span><span class="params">(FILE *fp)</span></span>;</span><br></pre></td></tr></table></figure>
 <h3 id="5-13-临时文件"><a href="#5-13-临时文件" class="headerlink" title="5.13 临时文件"></a>5.13 临时文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 返回唯一路径名的指针 */</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">tmpnam</span><span class="params">(<span class="keyword">char</span> *ptr)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回文件指针；若出错，返回NULL */</span></span><br><span class="line"><span class="function">FILE *<span class="title">tmpfile</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>tmpnam函数产生一个与现有文件名不同的一个有效路径名字符串。每次调用它时，都产生一个不同的路径名，最多调用次数是TMP_MAX。TMP_MAX定义在<stdio.h>中。如果ptr参数为NULL，则所产生的路径名存放在一个静态区中，指向静态区的指针作为函数值返回。后续调用tmpnam时，会重写该静态区。如果prt不是NULL，则认为它应该是指向长度至少是L_tmpnam个字符的数组（L_tmpnam是一个常量，定义在<stdio.h>中）。所产生的路径名存放在该数组中，prt也作为函数值返回。</p>
+<p>tmpnam函数产生一个与现有文件名不同的一个有效路径名字符串。每次调用它时，都产生一个不同的路径名，最多调用次数是TMP_MAX。TMP_MAX定义在stdio.h中。如果ptr参数为NULL，则所产生的路径名存放在一个静态区中，指向静态区的指针作为函数值返回。后续调用tmpnam时，会重写该静态区。如果prt不是NULL，则认为它应该是指向长度至少是L_tmpnam个字符的数组（L_tmpnam是一个常量，定义在stdio.h中）。所产生的路径名存放在该数组中，prt也作为函数值返回。</p>
 <p>tmpfile创建一个临时二进制文件（类型wb+），在关闭该文件或程序结束时将自动删除这种文件。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回指向目录名的指针；若出错，返回NULL */</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">mkdtemp</span><span class="params">(<span class="keyword">char</span> *<span class="keyword">template</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回文件描述符；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkstemp</span><span class="params">(<span class="keyword">char</span> *<span class="keyword">template</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>mkdtemp函数创建了一个目录，该目录有一个唯一的名字；mkstemp函数创建了一个文件，该文件有一个唯一的名字。名字是通过template字符串进行选择的。这个字符串是后6位设置为XXXXXX的路径名。函数将这些占位符替换成不同的字符串来构建一个唯一的路径名。如果成功的话，这两个函数将修改template字符串反映临时文件的名字。</p>
 <p>mkdtemp函数创建的目录使用下列访问权限位：S_IRUSR、S_IWUSR、S_IXUSR。mkstemp函数以唯一的名字创建一个普通文件并且打开该文件，该函数返回的文件描述符以读写方式打开，访问权限位设置为：S_IRUSR、S_IWUSR。</p>
 <p>与tmpfile不同的是，mkstemp创建的临时文件并不会自动删除。</p>
+<h2 id="第6章-系统数据文件和信息"><a href="#第6章-系统数据文件和信息" class="headerlink" title="第6章 系统数据文件和信息"></a>第6章 系统数据文件和信息</h2><h3 id="6-1-引言"><a href="#6-1-引言" class="headerlink" title="6.1 引言"></a>6.1 引言</h3><p><strong>系统文件</strong>：</p>
+<ul>
+<li>口令文件：/etc/passwd</li>
+<li>组文件：/etc/group</li>
+</ul>
+<p>UNIX系统的正常运作需要使用大量与系统有关的数据文件，这些数据文件都是ASCII文本文件，并且使用标准I/O库读这些文件。但是，对于较大的系统，顺序扫描口令文件很花费时间，我们需要能够以非ASCII文本格式存放这些文件，但仍向使用其他文件格式的应用程序提供接口。</p>
+<p><strong>为应用程序提供对数据文件的可移植接口</strong>是本章的主题。本章也包括了系统标识函数、时间和日期函数。</p>
+<h3 id="6-2-口令文件"><a href="#6-2-口令文件" class="headerlink" title="6.2 口令文件"></a>6.2 口令文件</h3><p>头文件pwd.h中定义的passwd结构：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517091026848.png" alt="image-20210517091026848"></p>
+<p>/etc/passwd（Linux）:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517091205402.png" alt="image-20210517091205402"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517091706896.png" alt="image-20210517091706896"></p>
+<ul>
+<li>空白注释字段不产生任何影响</li>
+<li>/usr/sbin/nologin 打印可定制的出错信息，然后以非0状态终止，可阻止一个特定用户登陆系统</li>
+<li>nobody用户名使任何人都可登陆至系统，但其用户ID（65534）和组ID（65534）不提供任何特权。该用户ID和组ID只能访问人人皆可读、写的文件</li>
+</ul>
+<p>两个获取口令文件项的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pwd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">struct passwd *<span class="title">getpwuid</span><span class="params">(<span class="keyword">uid_t</span> uid)</span></span>;</span><br><span class="line"><span class="function">struct passwd *<span class="title">getpwnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>若成功，返回指向passwd结构的指针；若出错，返回NULL。</p>
+<p>passwd结构通常是函数内部的静态变量，只要调用任一相关函数，其内容就会被重写。</p>
+<p>有些程序要查看整个口令文件：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pwd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回指针；若出错或到达文件尾，返回NULL */</span></span><br><span class="line"><span class="function">struct passwd *<span class="title">getpwent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setpwent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">endpwent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>调用getpwend时，它返回口令文件中的下一个记录项。每次调用此函数都重写passwd结构。第一次调用时，它打开所使用的各个文件。在使用getpwent查看完口令文件后，一定要调用endpwent关闭这些文件。getpwent对返回记录项的顺序并无要求。</p>
+<p>setpwent反绕它所使用的文件。</p>
+<h3 id="6-3-阴影口令"><a href="#6-3-阴影口令" class="headerlink" title="6.3 阴影口令"></a>6.3 阴影口令</h3><p>加密口令时经<strong>单向</strong>加密算法处理过的用户口令副本。对于一个加密口令，找不到一种算法可以将其反变换到明文口令。</p>
+<p>阴影口令（shadow password）文件中存放这些加密过的口令，与之相关的结构：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517094911742.png" alt="image-20210517094911742"></p>
+<p>只有用户登陆名和加密口令这两个字段是必须的。阴影口令文件（/etc/shadow）文件只有root用户可读，而/etc/passwd文件可由各用户自由读取。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;shadow.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回指针；若出错，返回NULL */</span></span><br><span class="line"><span class="function">struct spwd *<span class="title">getspnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</span><br><span class="line"><span class="function">struct spwd *<span class="title">getspent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setspent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">endspent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="6-4-组文件"><a href="#6-4-组文件" class="headerlink" title="6.4 组文件"></a>6.4 组文件</h3><p>/etc/group为组文件。与之对应的C结构体是在头文件grp.h中的group：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517095502842.png" alt="image-20210517095502842"></p>
+<p>gr_men是一个指针数组，其中每一个指针指向一个属于该组的用户名。该数组以null指针结尾。</p>
+<p>可以用下列两个函数来获取一个group的信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;grp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回指针；若出错，返回NULL */</span></span><br><span class="line"><span class="function">struct group *<span class="title">getgrgid</span><span class="params">(<span class="keyword">gid_t</span> gid)</span></span>;</span><br><span class="line"><span class="function">struct group *<span class="title">getgrnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>如同对口令文件进行操作的函数一样，这两个函数通常也返回指向一个静态变量的指针，在每次调用时都重写该静态变量。</p>
+<p>搜索整个组文件，使用另外几个函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;grp.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回指针；若出错或到达文件尾端，返回NULL */</span></span><br><span class="line"><span class="function">struct group *<span class="title">getgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">endgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="6-5-附属组ID（supplementary-group-ID）"><a href="#6-5-附属组ID（supplementary-group-ID）" class="headerlink" title="6.5 附属组ID（supplementary group ID）"></a>6.5 附属组ID（supplementary group ID）</h3><p>我们不仅可以属于口令文件记录项中组ID所对应的组，也可属于多至16各另外的组。文件访问权限检查修改为：不仅将进程的有效组ID与文件的组ID相比较，而且也将所有附属组ID与文件的组ID进行比较。</p>
+<p>使用附属组ID的优点是不必再显式地经常更改组。一个用户会参与多个项目，因此也就要同时属于多个组，此类情况是常有的。</p>
+<h3 id="6-6-实现区别"><a href="#6-6-实现区别" class="headerlink" title="6.6 实现区别"></a>6.6 实现区别</h3><p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517100902560.png" alt="image-20210517100902560"></p>
+<h3 id="6-7-其他数据文件"><a href="#6-7-其他数据文件" class="headerlink" title="6.7 其他数据文件"></a>6.7 其他数据文件</h3><p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517101250237.png" alt="image-20210517101250237"></p>
+<p>一般情况下，对于每个数据文件，至少有3各函数：</p>
+<ul>
+<li>get函数：读下一个记录，如果需要，还会打开该文件。此种函数通常返回指向一个结构的指针。当已达到文件尾端时返回空指针。大多数get函数返回指向一个静态存储类结构的指针，如果要保存它，则需复制它。</li>
+<li>set函数：打开相应的数据文件（如果尚未打开），然后反绕该文件。如果希望在相应文件起始处开始处理，则调用此函数。</li>
+<li>end函数：关闭相应数据文件。</li>
+</ul>
+<p>另外，还可支持某种形式的键搜索，如getpwname、getpwudi等等。</p>
+<h3 id="6-8-登陆账户记录"><a href="#6-8-登陆账户记录" class="headerlink" title="6.8 登陆账户记录"></a>6.8 登陆账户记录</h3><p>大多数UNIX系统都提供下列两个数据文件：</p>
+<ul>
+<li>utmp：记录当前登陆到系统的各个用户，对应命令who（/var/run/utmp）</li>
+<li>wtmp：跟踪各个登陆和注销事件，对应命令last（/var/log/wtmp）</li>
+</ul>
+<p>对应的结构体：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">utmp</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span> ut_line[<span class="number">8</span>];   <span class="comment">/* tty line: &quot;ttyh0&quot;, &quot;ttyd0&quot;, &quot;ttyp0&quot;, ... */</span></span><br><span class="line">    <span class="keyword">char</span> ut_name[<span class="number">8</span>];   <span class="comment">/* login time */</span></span><br><span class="line">    <span class="keyword">long</span> ut_time;      <span class="comment">/* seconds since Epoch */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>登陆时，login程序填写此类型结构，然后将其写入到utmp文件中，同时也将其填写到wtmp文件中。注销时，init进程将utmp文件中相应的记录擦除（每个字节都填以null字节），并将一个新记录填写到wtmp文件中。</p>
+<h3 id="6-9-系统标识"><a href="#6-9-系统标识" class="headerlink" title="6.9 系统标识"></a>6.9 系统标识</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/utsname.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uname</span><span class="params">(struct utsname *name)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>uname函数返回与主机和操作系统有关的信息，若成功，返回非负值；若出错，返回-1。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517102628960.png" alt="image-20210517102628960"></p>
+<p>utsname结构中，每个字段都是一个字符数组，每个数组的长度由实现确定。每个字符串都以null字节结尾。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517102827921.png" alt="image-20210517102827921"></p>
+<p>BSD派生的系统提供gethostname函数，它只返回主机名，该名字通常就是TCP/IP网络上主机的名字。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gethostname</span><span class="params">(<span class="keyword">char</span> *name, <span class="keyword">int</span> namelen)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>若成功，返回0；若出错，返回-1。namelen参数指定name缓冲区长度，如若提供足够的空间，则通过name返回的字符串以null字节结尾。如果没有提供足够的空间，则没有说明通过name返回的字符串是否以null结尾。相关联的文件是/etc/hostname。</p>
+<h3 id="6-10-时间和日期例程"><a href="#6-10-时间和日期例程" class="headerlink" title="6.10 时间和日期例程"></a>6.10 时间和日期例程</h3><p>time函数用于获取日历时间（从UTC到现在的秒数）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">time_t</span> <span class="title">time</span><span class="params">(<span class="keyword">time_t</span> *calptr)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>若成功，返回时间值；若出错，返回-1。如果参数非空，则时间值也存放在由calptr指向的单元内。</p>
+<p>clock_gettime函数可用于获取指定时钟的时间，将时间存在timespce结构中，它把时间表示为秒和纳秒：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clock_gettime</span><span class="params">(<span class="keyword">clockid_t</span> clock_id, struct timespec *tsp)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>clock_id的类型为clockid_t：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517104625328.png" alt="image-20210517104625328"></p>
+<p>clock_id设置为CLOCK_REALTIME时，clock_gettime函数提供了与time函数类似的功能，不过在系统支持高精度时间值的情况下，clock_gettime可能比time函数得到更高精度的时间值。</p>
+<p>clock_getres函数把参数tsp指向的timespec结构初始化为与clock_id参数对应的时钟精度。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clock_getres</span><span class="params">(<span class="keyword">clockid_t</span> clock_id, struct timespec *tsp)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>要对特定的时钟设置时间，可以调用clock_settime函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clock_settime</span><span class="params">(<span class="keyword">clockid_t</span> clock_id, <span class="keyword">const</span> struct timespec *tsp)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>gettimeofday函数以距特定时间（1970年1月1日00:00:00）的秒数的方式将当前时间存放在tp指向的timeval结构中，而该结构将当前时间表示为为秒和微妙。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gettimeofday</span><span class="params">(struct timeval *tp, <span class="keyword">void</span> *tzp)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>tzp的唯一合法值是NULL，其他值将产生不确定的结构。某些平台支持用tzp说明时区，但这完全依赖于实现。</p>
+<p>一旦获取这种从上述特定时间经过的秒数的整型时间值后，通常要调用函数将其转换为分解的时间结构，然后调用另一个函数生成人们可读的时间和日期。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517110330679.png" alt="image-20210517110330679"></p>
+<p>上图中表示了时间转换关系，虚线表示受到环境变量TZ的影响。点划线标示了如何从时间相关的结构获得日历时间。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 出错返回NULL */</span></span><br><span class="line"><span class="function">struct tm *<span class="title">gmtime</span><span class="params">(<span class="keyword">const</span> <span class="keyword">time_t</span> *calptr)</span></span>;</span><br><span class="line"><span class="function">struct tm *<span class="title">localtime</span><span class="params">(<span class="keyword">const</span> <span class="keyword">time_t</span> *calptr)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>localtime和gmtime将日历时间转换成分解的时间，并将这些存放在一个tm结构中：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517110736428.png" alt="image-20210517110736428" style="zoom:67%;" /></p>
+<p>除了月日字段，其他字段的值都以0开始。如果夏令时生效，则夏令时标志值为正；如果为非夏令时时间，则该标志值为0，如果此信息不可用，则其值为负。</p>
+<p>localtime和gmtime的区别是：localtime将日历时间转换成本地时间（考虑本地时区和夏令时标志），而gmtime则将日历时间转换成协调统一时间的年、月、日、时、分、秒、周日分解结构。</p>
+<p>函数mktime以本地时间的年、月、日等作为参数，将其变换成time_t值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回日历时间；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">time_t</span> <span class="title">mktime</span><span class="params">(struct tm *tmptr)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>函数strftime是一个类似于printf的时间值函数，非常复杂，可以通过可用的多个参数来定制产生的字符串。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">strftime</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">size_t</span> maxsize, <span class="keyword">const</span> <span class="keyword">char</span> *format, <span class="keyword">const</span> struct tm *tmptr)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">strftime_l</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">size_t</span> maxsize, <span class="keyword">const</span> <span class="keyword">char</span> *format, <span class="keyword">const</span> struct tm *tmptr, <span class="keyword">locale_t</span> locale)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>若有空间，返回存入数组的字符数（在末尾加上null终止符，但该字符不算在返回字符数中）；否则，返回0。strftime_l允许调用者将区域指定为参数，除此之外，strftime和strftime_l函数是相同的。strftime使用通过TZ环境变量指定的区域。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517112208563.png" alt="image-20210517112208563"></p>
+<p>strptime函数是strftime的反过来版本，把字符串时间转换成分解时间。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 出错返回NULL */</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strptime</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *buf, <span class="keyword">const</span> <span class="keyword">char</span> *format, struct tm *tmptr)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210517113214260.png" alt="image-20210517113214260"></p>
 
         </div>
 
@@ -875,7 +972,7 @@
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">C++ Primer Plus学习记录</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -908,7 +1005,7 @@
         </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
         
     </div>

@@ -62,7 +62,7 @@
                             <a class=""
                                href="/"
                             >
-                                首页
+                                HOME
                             </a>
                         </li>
                     
@@ -70,7 +70,7 @@
                             <a class=""
                                href="/archives"
                             >
-                                归档
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -78,7 +78,7 @@
                             <a class=""
                                href="/categories"
                             >
-                                分类
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -86,7 +86,7 @@
                             <a class=""
                                href="/tags"
                             >
-                                标签
+                                TAGS
                             </a>
                         </li>
                     
@@ -94,7 +94,7 @@
                             <a class=""
                                href="/about"
                             >
-                                关于
+                                ABOUT
                             </a>
                         </li>
                     
@@ -115,27 +115,27 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">关于</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -1107,8 +1107,8 @@
 </ul>
 <h3 id="8-2-进程标识"><a href="#8-2-进程标识" class="headerlink" title="8.2 进程标识"></a>8.2 进程标识</h3><p>每个进程都有一个非负整型表示的唯一进程ID。虽然是唯一的，但进程ID是可复用的，当一个进程终止后，其进程ID就成为复用的候选者。</p>
 <ul>
-<li>0：调度进程，常被成为交换进程，是内核的一部分，不执行任何磁盘上的程序。</li>
-<li><p>1：init进程，在自举过程结束时由内核调用。init通常读取与系统有关的初始化文件，并将系统引导到一个状态。init进程绝不会终止。它是一个普通的用户进程，但是它以超级用户特权运行。</p>
+<li>0：调度进程，常被称为交换进程，是内核的一部分，不执行任何磁盘上的程序。</li>
+<li><p>1：init进程，在自举过程结束时由内核调用。init通常读取与系统有关的初始化文件，并将系统引导到一个状态。init进程绝不会终止。<strong>它是一个普通的用户进程，但是它以超级用户特权运行</strong>。</p>
 </li>
 <li><p>2：页守护进程，负责支持虚拟存储器系统的分页操作。</p>
 </li>
@@ -1150,7 +1150,7 @@
 <li>这两个进程的父进程ID不同</li>
 <li>子进程的tms_utime、tms_stime、tms_cutime和tms_ustime的值设置为0</li>
 <li>子进程不继承父进程设置的文件锁</li>
-<li>子进程的未处理闹钟被清楚</li>
+<li>子进程的未处理闹钟被清除</li>
 <li>子进程的未处理信号集被设置为空集</li>
 </ul>
 <h3 id="8-4-函数vfork"><a href="#8-4-函数vfork" class="headerlink" title="8.4 函数vfork"></a>8.4 函数vfork</h3><p>vfork函数用于创建一个新进程，而该新进程的目的是exec一个新程序。且vfork<strong>保证子进程先运行</strong>，在它调用exec或exit之后父进程才可能被调度运行，当子进程调用这两个函数中的任意一个时，父进程会恢复运行。（如果调用这两个函数之前子进程依赖父进程的进一步动作，则会导致死锁。）</p>
@@ -1158,7 +1158,7 @@
 <h3 id="8-5-函数exit"><a href="#8-5-函数exit" class="headerlink" title="8.5 函数exit"></a>8.5 函数exit</h3><p>如果父进程在子进程之前终止，对于父进程已终止的所有进程，它们的父进程都改变为 init 进程。我们称这些进程由 init 进程收养。其操作过程大致是：在一个进程终止时，内核逐个检查所有活动进程，以判断它是否是正要终止进程的子进程，如果是，则该进程的父进程ID就更改为1。这种处理方式保证了每个进程有一个父进程。</p>
 <p>如果子进程在父进程之前终止，那么父进程如何能在做相应检查时获得子进程的终止状态呢？如果子进程完全消失了，父进程在最终准备好检查子进程时是无法获取它的终止状态的。内核为每个终止子进程保存了一定量的信息，所以当终止进程的父进程调用wait或waitpid时，可以得到这些信息。这些信息至少包括进程ID、该进程的终止状态以及该进程使用的CPU时间总量。</p>
 <p>一个已经终止、但是其父进程尚未对其进行善后处理（获取终止子进程的有关信息、释放它仍占用的资源）的进程被称为<strong>僵死进程</strong>。ps命令将僵死进程的状态打印为Z。</p>
-<p>一个由init进程收养的进程终止时会发生什么？它会不会编程一个僵死进程？答案是不会。因为init被编写成无论何时只要有一个子进程终止，init就会调用一个wait函数取得其终止状态。这样也放置了系统中塞满僵死进程。</p>
+<p>一个由init进程收养的进程终止时会发生什么？它会不会编程一个僵死进程？答案是不会。因为init被编写成无论何时只要有一个子进程终止，init就会调用一个wait函数取得其终止状态。这样也防止了系统中塞满僵死进程。</p>
 <h3 id="8-6-函数wait和waitpid"><a href="#8-6-函数wait和waitpid" class="headerlink" title="8.6 函数wait和waitpid"></a>8.6 函数wait和waitpid</h3><p>当一个进程正常或异常终止时，内核就向其父进程发送SIGCHLD信号，该信号是内核向父进程发送的异步通知。对于这种信号系统默认动作是忽略它。</p>
 <p>调用wait或waitpid的进程可能会发生什么：</p>
 <ul>
@@ -1180,7 +1180,7 @@
 <li>-1：等待任一子进程，此时与wait等效</li>
 <li>>0：等待进程ID与pid相等的子进程</li>
 <li>==0：等待组ID等于调用组进程ID的任意子进程</li>
-<li>pid\&lt;-1：等待组ID等于pid绝对值的任一子进程</li>
+<li>pid&lt;-1：等待组ID等于pid绝对值的任一子进程</li>
 </ul>
 <p>对于wait，其唯一的出错就是调用进程没有子进程。但是对于waitpid，如果指定的进程或进程组不存在，或者参数pid指定的进程不是调用进程的子进程，都可能出错。</p>
 <p>waitpid的options参数使我们能进一步控制waitpid的操作。此参数或者为0，或者为下图中常量按位或运算的结果。</p>
@@ -1191,7 +1191,7 @@
 <p>与waitpid相似，waitid允许一个进程指定要等待的子进程。</p>
 <h3 id="8-8-函数wait3和wait4"><a href="#8-8-函数wait3和wait4" class="headerlink" title="8.8 函数wait3和wait4"></a>8.8 函数wait3和wait4</h3><p>wait3、wait4 比wait、waitpid、waitid所提供的功能要多一个，这与附加参数有关。该参数允许内核返回由终止进程及其所有子进程使用的资源概况。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/resource.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回进程ID；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">wait3</span><span class="params">(<span class="keyword">int</span> *statloc, <span class="keyword">int</span> options, struct rusage *rusage)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">wait4</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">int</span> *statloc, <span class="keyword">int</span> options, struct rusage *rusage)</span></span>;</span><br></pre></td></tr></table></figure>
-<h3 id="8-9-竞争条件"><a href="#8-9-竞争条件" class="headerlink" title="8.9 竞争条件"></a>8.9 竞争条件</h3><p>当对各进程都企图对共享数据进行某种处理，而最后的结果又取决于进程运行的顺序时，我们认为这发生了<strong>竞争条件（race condition）</strong>。</p>
+<h3 id="8-9-竞争条件"><a href="#8-9-竞争条件" class="headerlink" title="8.9 竞争条件"></a>8.9 竞争条件</h3><p>当各进程都企图对共享数据进行某种处理，而最后的结果又取决于进程运行的顺序时，我们认为这发生了<strong>竞争条件（race condition）</strong>。</p>
 <p>如果一个父进程要等待其子进程终止，使用wait函数中的一个。</p>
 <p>如果一个子进程要等待其父进程终止，则可以使用<strong>轮询</strong>：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (getppid() != <span class="number">1</span>)</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
@@ -1204,7 +1204,7 @@
 <li>exit：处理终止</li>
 <li>wait：等待终止</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 7个函数，若出错，返回-1；若成功，返回</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execl</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> <span class="keyword">char</span> *arg0, ... <span class="comment">/* (char *)0 */</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ececle</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> <span class="keyword">char</span> *arg0, ..., <span class="comment">/* (char *)0, char *const envp[] */</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execve</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">char</span> *<span class="keyword">const</span> argv[], <span class="keyword">char</span> *<span class="keyword">const</span> envp[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execlp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">const</span> <span class="keyword">char</span> *arg0, ... <span class="comment">/* (char *) 0 */</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ececvp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fexecve</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">char</span> *<span class="keyword">const</span> argv[], <span class="keyword">char</span> *<span class="keyword">const</span> envp[])</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 7个函数，若出错，返回-1；若成功，不返回</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execl</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> <span class="keyword">char</span> *arg0, ... <span class="comment">/* (char *)0 */</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ececle</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> <span class="keyword">char</span> *arg0, ..., <span class="comment">/* (char *)0, char *const envp[] */</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execve</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">char</span> *<span class="keyword">const</span> argv[], <span class="keyword">char</span> *<span class="keyword">const</span> envp[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">execlp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">const</span> <span class="keyword">char</span> *arg0, ... <span class="comment">/* (char *) 0 */</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ececvp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">char</span> *<span class="keyword">const</span> argv[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fexecve</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">char</span> *<span class="keyword">const</span> argv[], <span class="keyword">char</span> *<span class="keyword">const</span> envp[])</span></span>;</span><br></pre></td></tr></table></figure>
 <p>前四个以路径名作为参数，后两个以文件名作为参数，最后一个以文件描述符作为参数。当以文件名作为参数时：</p>
 <ul>
 <li>如果filename包含/，则就将其视为路径名pathname。</li>
@@ -1242,7 +1242,113 @@
 <p>在exec前后实际用户ID和实际组ID保持不变，而有效ID是否改变则取决于所执行程序文件的设置用户ID和设置组ID位是否设置。如果新程序的设置用户ID位已设置，则有效用户ID变为程序文件所有者的ID；否则有效用户ID不变。对组ID的处理方式与此相同。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210519114732281.png" alt="image-20210519114732281"></p>
 <p>7个函数中只有execve是系统调用，其他6个是库函数。</p>
-
+<h3 id="8-1-更改用户ID和更改组ID"><a href="#8-1-更改用户ID和更改组ID" class="headerlink" title="8.1 更改用户ID和更改组ID"></a>8.1 更改用户ID和更改组ID</h3><p>UNIX系统中，特权以及访问控制是基于用户ID和组ID的。一般而言，在设计应用时，我们总是试图使用<strong>最小特权</strong>模型。</p>
+<p>可使用setuid函数设置实际用户ID和有效用户ID，用setgid函数设置实际组ID和有效组ID。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setuid</span><span class="params">(<span class="keyword">uid_t</span> uid)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setgid</span><span class="params">(<span class="keyword">gid_t</span> gid)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>更改用户ID的规则：</p>
+<ul>
+<li>若进程具有超级用户特权，则 setuid 函数将实际用户ID、有效用户ID以及保存的设置用户ID设置为 uid。</li>
+<li>若进程没有超级用户特权，但是 uid 等于实际用户ID或保存的设置用户ID，则 setuid 只将有效用户ID设置为 uid。不更改实际用户ID和保存的设置用户ID。</li>
+<li>如果上面两个条件都不满足，则 errno 设置为 EPERM，并返回-1。</li>
+</ul>
+<p>关于内核维护的3个用户ID，还需要注意以下几点：</p>
+<ul>
+<li>只有超级用户进程可以更改实际用户ID。通常，实际用户ID是在用户登陆时，由login程序设置的，而且决不会改变它。因为login是一个超级用户进程，当它调用 setuid 时，设置所有3个用户ID。</li>
+<li>仅当对程序文件设置了设置用户ID位时，exec 函数才设置有效用户ID。如果设置用户ID位没有设置，exec函数不会改变有效用户ID，而将维持现有值。任何时候都可以调用setuid，将有效用户ID设置为实际用户ID或保存的设置用户ID。自然地，不能将有效用户ID设置为任一随机值。</li>
+<li>保存的设置用户ID是由exec复制有效用户ID而得到的。如果设置了文件的设置用户ID，则在exec根据文件的用户ID设置了进程的有效ID后，这个副本就被保存起来了。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520090734802.png" alt="image-20210520090734802"></p>
+<h5 id="函数-setreuid-和-setregid"><a href="#函数-setreuid-和-setregid" class="headerlink" title="函数 setreuid 和 setregid"></a>函数 setreuid 和 setregid</h5><p>setreuid用于交换实际用户ID和有效用户ID的值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；’若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setreuid</span><span class="params">(<span class="keyword">uid_t</span> ruid, <span class="keyword">uid_t</span> euid)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setregid</span><span class="params">(<span class="keyword">gid_t</span> rgid, <span class="keyword">git_t</span> egid)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>若其中任一参数值为-1，则表示相应的ID应当保持不变。</p>
+<p>规则很简单：一个非特权用户总能交换实际用户ID和有效用户ID。这就允许一个设置用户ID程序交换成用户的普通权限，以后又可再次交换回设置用户ID权限。</p>
+<h5 id="函数-seteuid-和-setegid"><a href="#函数-seteuid-和-setegid" class="headerlink" title="函数 seteuid 和 setegid"></a>函数 seteuid 和 setegid</h5><p>只更改有效用户ID和有效组ID。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">seteuid</span><span class="params">(<span class="keyword">uid_t</span> uid)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setegit</span><span class="params">(<span class="keyword">gid_t</span> gid)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>一个非特权用户可将其有效用户ID设置为其实际用户ID或其保存的设置用户ID。对于一个特权用户，则可以将有效用户ID设置为uid。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520092416680.png" alt="image-20210520092416680"></p>
+<h3 id="8-13-函数system"><a href="#8-13-函数system" class="headerlink" title="8.13 函数system"></a>8.13 函数system</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">system</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *cmdstring)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>如果cmdstring是一个空指针，仅当系统支持system函数时，返回非0值。这一特征用来检测在给定的操作系统上是否支持system函数。</p>
+<p>system在其实现中调用了fork、exec和waitpid，因此有3中返回值:</p>
+<ul>
+<li>fork失败或者waitpid返回除EINTR之外的出错，则system返回-1，并且设置errno以指示错误类型。</li>
+<li>如果exec失败，则其返回值如同shell执行了<code>exit(127)</code>。</li>
+<li>否则所有3个函数都成功，那么system的返回值是shell的终止状态。</li>
+</ul>
+<h5 id="设置用户ID程序"><a href="#设置用户ID程序" class="headerlink" title="设置用户ID程序"></a>设置用户ID程序</h5><p>如果在一个设置用户ID程序中调用system，那会发生什么呢？这是一个安全方面的漏洞，决不应当这样做。</p>
+<h3 id="8-17-进程时间"><a href="#8-17-进程时间" class="headerlink" title="8.17 进程时间"></a>8.17 进程时间</h3><p>在1.10节中我们介绍了可以度量的3个时间：时钟时间、用户CPU时间和系统CPU时间。任一进程都可调用times函数获得它自己以及已终止子进程的上述值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/times.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回流逝的墙上时钟时间（以时钟滴答数为单位）；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">clock_t</span> <span class="title">times</span><span class="params">(struct tms *buf)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>此函数填写由 <em>buf</em> 指向的tms结构，该结构定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tms</span> &#123;</span></span><br><span class="line">    <span class="keyword">clock_t</span> tms_utime;  <span class="comment">/* user CPU time */</span></span><br><span class="line">    <span class="keyword">clock_t</span> tms_stime;  <span class="comment">/* system CPU time */</span></span><br><span class="line">    <span class="keyword">clock_t</span> tms_cutime; <span class="comment">/* user CPU time, terminated children */</span></span><br><span class="line">    <span class="keyword">clock_t</span> tms_cstime; <span class="comment">/* system CPU time, terminated children */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意，此结构没有包含墙上时钟时间，times函数返回墙上时钟时间作为其函数值。此值是相对于过去的某一时刻度量的，所以不能用绝对值而必须使用其相对值，即两次调用times，用两次返回的差值作为墙上时钟时间。</p>
+<p>所有由此函数返回的clock_t值都用_SC_CLK_TCK转换成秒数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;apue.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/times.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">pr_times</span><span class="params">(<span class="keyword">clock_t</span>, struct tms*, struct tms*)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_cmd</span><span class="params">(<span class="keyword">char</span> *)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    setbuf(<span class="built_in">stdout</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; argc; i++)</span><br><span class="line">        do_cmd(argv[i]);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_cmd</span><span class="params">(<span class="keyword">char</span> *cmd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tms</span> <span class="title">tmsstart</span>, <span class="title">tmsend</span>;</span></span><br><span class="line">    <span class="keyword">clock_t</span> start, end;</span><br><span class="line">    <span class="keyword">int</span> status;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\ncommand: %s\n&quot;</span>, cmd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((start = times(&amp;tmsstart)) == <span class="number">-1</span>)</span><br><span class="line">        err_sys(<span class="string">&quot;times_error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((status = system(cmd)) &lt; <span class="number">0</span>)</span><br><span class="line">        err_sys(<span class="string">&quot;system() error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((end = times(&amp;tmsend)) == <span class="number">-1</span>)</span><br><span class="line">        err_sys(<span class="string">&quot;times error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    pr_times(end-start, &amp;tmsstart, &amp;tmsend);</span><br><span class="line">    pr_exit(status);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">pr_times</span><span class="params">(<span class="keyword">clock_t</span> real, struct tms *tmsstart, struct tms *tmsend)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">long</span> clktck = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (clktck == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> ((clktck = sysconf(_SC_CLK_TCK)) &lt; <span class="number">0</span>) <span class="comment">// 获取转换进制</span></span><br><span class="line">            err_sys(<span class="string">&quot;sysconf error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;  real:  %7.2f\n&quot;</span>, real / (<span class="keyword">double</span>)clktck);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;  user:  %7.2f\n&quot;</span>, (tmsend-&gt;tms_utime - tmsstart-&gt;tms_utime) / (<span class="keyword">double</span>)clktck);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;  sys:   %7.2f\n&quot;</span>, (tmsend-&gt;tms_stime - tmsstart-&gt;tms_stime) / (<span class="keyword">double</span>)clktck);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;  child user:  %7.2f\n&quot;</span>, (tmsend-&gt;tms_cutime - tmsstart-&gt;tms_cutime) / (<span class="keyword">double</span>)clktck);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;  child sys:   %7.2f\n&quot;</span>, (tmsend-&gt;tms_cstime - tmsstart-&gt;tms_cstime) / (<span class="keyword">double</span>)clktck);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520104208845.png" alt="image-20210520104208845"></p>
+<h2 id="第9章-进程关系"><a href="#第9章-进程关系" class="headerlink" title="第9章 进程关系"></a>第9章 进程关系</h2><h3 id="9-1-引言"><a href="#9-1-引言" class="headerlink" title="9.1 引言"></a>9.1 引言</h3><p>本章将更详细地说明进程组以及会话的概念，还将介绍登陆shell和所有从登陆shell启动的进程之间的关系。</p>
+<h3 id="9-2-终端登陆"><a href="#9-2-终端登陆" class="headerlink" title="9.2 终端登陆"></a>9.2 终端登陆</h3><p>先说明当我们登陆到UNIX系统时所执行的各个程序。终端或者是本地的，或者是远程的，登陆都经由内核中的终端设备驱动程序。因为连接到主机上的终端设备数是固定的，所以同时的登陆数也就有了已知的上限。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520110057746.png" alt="image-20210520110057746"></p>
+<p>系统管理者创建通常名为/etc/ttys的文件，其中，每个终端设备都有一行，每一行说明设备名和传到getty程序的参数。当系统自举时，内核创建进程ID为1的init进程。init进程是系统进入多用户模式。init读取文件/etc/ttys，对每一个允许登陆的终端设备，init调用一次fork，它所生成的子进程则exec getty程序。图9-1中所有进程的实际用户ID和有效用户ID都是0，init以空环境exec getty程序。</p>
+<p>getty对终端设备调用open函数，以读、写方式将终端打开。如果设备是调制解调器，则open可能会在设备驱动程序中滞留，直到用户拨号调制解调器，并且线路被接通。一旦设备被打开，则文件描述符0、1、2就被设置到该设备。然后getty输出“login：”之类的信息，并等待用户键入用户名。</p>
+<p>当用户键入用户名后，getty的工作就完成了。然后它以类似于下列的方式调用login程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execle(<span class="string">&quot;/bin/login&quot;</span>, <span class="string">&quot;login&quot;</span>, <span class="string">&quot;-p&quot;</span>, username, (<span class="keyword">char</span>*)<span class="number">0</span>, envp);</span><br></pre></td></tr></table></figure>
+<p>init以一个空环境调用getty，getty以终端名和在gettytab中说明的环境字符串为login创建一个环境（envp参数）。-p标志通知login保留传递给它的环境，也可将其他环境字串加到该环境中，但是不要替换它。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520110806060.png" alt="image-20210520110806060"></p>
+<p>因为最初的init进程具有超级用户权限，所以图9-2中的所有进程都有超级用户权限。图9-2中底部3个进程的进程ID相同，因为进程ID不会因执行exec而改变。并且，除了最初的init进程，所有进程的父进程ID都是1。</p>
+<p>login能处理多项工作。因为它得到了用户名，所以能调用getpwnam取得相应的口令文件登录项。然后getpass以显示提示“Password：”，接着读用户键入的口令。它调用crypt将用户键入的口令加密，并与该用户在阴影口令文件中登录想的pw_passwd字段相比较。如果用户几次键入的口令都无效，则login以参数l调用exit表示登陆过程失败。父进程（init）了解到子进程的终止情况后，将再次调用fork，其后又执行了getty，对终端重复上述过程。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520111457340.png" alt="image-20210520111457340"></p>
+<p>如果用户登陆正确，login就将完成如下工作：</p>
+<ul>
+<li><p>将当前工作目录更改为该用户的起始目录</p>
+</li>
+<li><p>调用chown更改该终端的所有权，使登陆用户成为它的所有者</p>
+</li>
+<li><p>将对该终端设备的访问权限改变成“用户读和写”</p>
+</li>
+<li><p>调用setgid及initgroups设置进程的组ID</p>
+</li>
+<li><p>用login得到的所有信息初始化环境：起始目录（HOME）、shell（SHELL）、用户名（USER和LOGNAME）以及一个系统默认路径（PATH）</p>
+</li>
+<li><p>login进程更改登陆用户的用户ID（setuid）并调用该用户的登陆shell，其方式类似于：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execl(<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-sh&quot;</span>, (<span class="keyword">char</span> *)<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>argv[0]的第一个字符负号“-”是一个标志，表示该shell被作为登陆shell调用。</p>
+</li>
+</ul>
+<p>至此，登陆用户的登陆shell开始运行。</p>
+<h3 id="9-3-网络登陆"><a href="#9-3-网络登陆" class="headerlink" title="9.3 网络登陆"></a>9.3 网络登陆</h3><p>网络登陆时，在终端和计算机之间的连接不再是点到点的。在网络登陆情况下，login仅仅是一种可用的服务，这与其他网络服务（如FTP或SMTP）的性质相同。所有登录都经由内核的网络接口驱动程序（如以太网驱动程序），并且事先并不知道将会有多少这样的登陆。</p>
+<p>系统使用<strong>伪终端</strong>的软件驱动程序，仿真串行终端的运行行为，并将终端操作映射为网络操作。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520112553978.png" alt="image-20210520112553978"></p>
+<p>作为系统启动的一部分，init调用一个shell，使其执行shell脚本/etc/rc，由此shell脚本启动一个守护进程inetd。一旦此shell脚本终止，inetd的父进程就变成init。inetd等待TCP/IP连接请求到达主机，而当一个连接请求到达时，它执行一次fork，然后生成的子进程exec适当的程序。</p>
+<p>telnetd进程打开一个伪终端设备，并用fork分成两个进程。父进程处理网络连接的通信，子进程则执行login程序。父进程和子进程通过伪终端相连接。在调用exec之前，子进程使用其文件描述符0、1、2与伪终端相连。如果登陆正确，login就执行9.2节中所述的同样步骤——更改当前工作目录为起始目录、设置登陆用户的组ID、用户ID以及初始环境。然后login调用exec将其自身替换为登陆用户的登陆shell。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520113722329.png" alt="image-20210520113722329"></p>
+<p>需要理解的重点是：当通过终端或网络登陆时，我们得到一个登陆shell，其标准输入、标准输出和标准错误要么连接到一个终端设备，要么连接到一个伪终端设备上。这一登陆shell是一个会话的开始，而此终端或伪终端则是会话的控制终端。</p>
+<h3 id="9-4-进程组"><a href="#9-4-进程组" class="headerlink" title="9.4 进程组"></a>9.4 进程组</h3><p>进程组是一个或多个进程的集合，通常，它们是在同一作业中结合起来的，同一进程组中的各进程接受来自同一终端的各种信号。每个进程组有一个唯一的进程组ID。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回调用进程的进程组ID</span></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getpgrp</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 若成功，返回进程组ID；若出错，返回-1</span></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getpgid</span><span class="params">(<span class="keyword">pid_t</span> pid)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>getpgid(0)等效于getpgrp()。</p>
+<p>每个进程组都有一个组长进程。组长进程的进程组ID等于其进程ID。</p>
+<p>进程组组长可以创建一个进程组、创建该组中的进程，然后终止。只要在某个进程组中有一个进程存在，则该进程组就存在，这与其组长进程是否终止无关。从进程组创建开始到其中最后一个进程离开为止的时间称为进程组的生命期。某个进程组中的最后一个进程可以终止，也可以转移到另一个进程组。</p>
+<p>进程调用setpgid可以加入一个现有的进程组或者创建一个新进程组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setpgid</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">pid_t</span> pgid)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>setpgid函数将pid进程的进程组ID设置为pgid。如果这两个参数相等，则由pid指定的进程变成进程组组长。如果pid是0，则使用调用者的进程ID。另外，如果pgid是0，则由pid指定的进程ID用作进程组ID。一个进程只能为它自己或它的子进程设置进程组ID。在它的子进程调用了exec后，它就不再更改该子进程的进程组ID。</p>
+<h3 id="9-5-会话"><a href="#9-5-会话" class="headerlink" title="9.5 会话"></a>9.5 会话</h3><p>会话（session）是一个或多个进程组的集合。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520122749232.png" alt="image-20210520122749232"></p>
+<p>通常是由shell的管道将几个进程编成一组的。上图所示的安排可能是由下列形式的shell命令形成的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> proc1 | proc2 &amp;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> proc3 | proc4 | proc5</span></span><br></pre></td></tr></table></figure>
+<p>进程调用setsid函数建立一个新会话：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回进程组ID；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">setsid</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>如果调用此函数的进程不是一个进程组的组长，则函数创建一个新会话，具体会发生以下三件事：</p>
+<ul>
+<li>该进程变成新会话的首进程。此时，该进程是新会话中的唯一进程。</li>
+<li>该进程成为一个新进程组的组长进程。新进程组ID是该调用进程的进程ID。</li>
+<li>该进程没有控制终端。如果在调用setsid之前该进程有一个控制终端，那么这种联系也被切断。</li>
+</ul>
+<p>如果该调用进程已经是一个进程组的组长，则此函数返回出错。为了保证不处于这种情况，通常限调用fork，然后使其父进程终止，而子进程则继续。因为子进程继承了父进程的进程组ID，而其进程ID则使新分配的，两者不可能相等，这就保证了子进程不是一个进程组的组长。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回会话首进程的进程组ID；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getsid</span><span class="params">(<span class="keyword">pid_t</span> pid)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>如若pid是0，getsid返回调用进程的会话首进程的进程组ID。如果pid并不属于调用者所在的会话，那么调用进程就不能得到该会话首进程的进程组ID。</p>
+<h3 id="9-6-控制终端"><a href="#9-6-控制终端" class="headerlink" title="9.6 控制终端"></a>9.6 控制终端</h3><p>会话和进程组还有一些其他特性：</p>
+<ul>
+<li>一个会话可以有一个<em>控制终端</em>。这通常是终端设备或伪终端内设备。</li>
+<li>建立与控制终端连接的会话首进程被称为控制进程。</li>
+</ul>
+<h2 id="第10章-信号"><a href="#第10章-信号" class="headerlink" title="第10章 信号"></a>第10章 信号</h2>
         </div>
 
         
@@ -1258,7 +1364,7 @@
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">C++ Primer Plus学习记录</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -1291,7 +1397,7 @@
         </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
         
     </div>

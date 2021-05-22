@@ -62,7 +62,7 @@
                             <a class=""
                                href="/"
                             >
-                                HOME
+                                首页
                             </a>
                         </li>
                     
@@ -70,7 +70,7 @@
                             <a class=""
                                href="/archives"
                             >
-                                ARCHIVES
+                                归档
                             </a>
                         </li>
                     
@@ -78,7 +78,7 @@
                             <a class=""
                                href="/categories"
                             >
-                                CATEGORIES
+                                分类
                             </a>
                         </li>
                     
@@ -86,7 +86,7 @@
                             <a class=""
                                href="/tags"
                             >
-                                TAGS
+                                标签
                             </a>
                         </li>
                     
@@ -94,7 +94,7 @@
                             <a class=""
                                href="/about"
                             >
-                                ABOUT
+                                关于
                             </a>
                         </li>
                     
@@ -115,27 +115,27 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">HOME</a>
+                       href="/">首页</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">ARCHIVES</a>
+                       href="/archives">归档</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">CATEGORIES</a>
+                       href="/categories">分类</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">TAGS</a>
+                       href="/tags">标签</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">ABOUT</a>
+                       href="/about">关于</a>
                 </li>
             
         </ul>
@@ -1242,7 +1242,7 @@
 <p>在exec前后实际用户ID和实际组ID保持不变，而有效ID是否改变则取决于所执行程序文件的设置用户ID和设置组ID位是否设置。如果新程序的设置用户ID位已设置，则有效用户ID变为程序文件所有者的ID；否则有效用户ID不变。对组ID的处理方式与此相同。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210519114732281.png" alt="image-20210519114732281"></p>
 <p>7个函数中只有execve是系统调用，其他6个是库函数。</p>
-<h3 id="8-1-更改用户ID和更改组ID"><a href="#8-1-更改用户ID和更改组ID" class="headerlink" title="8.1 更改用户ID和更改组ID"></a>8.1 更改用户ID和更改组ID</h3><p>UNIX系统中，特权以及访问控制是基于用户ID和组ID的。一般而言，在设计应用时，我们总是试图使用<strong>最小特权</strong>模型。</p>
+<h3 id="8-11-更改用户ID和更改组ID"><a href="#8-11-更改用户ID和更改组ID" class="headerlink" title="8.11 更改用户ID和更改组ID"></a>8.11 更改用户ID和更改组ID</h3><p>UNIX系统中，特权以及访问控制是基于用户ID和组ID的。一般而言，在设计应用时，我们总是试图使用<strong>最小特权</strong>模型。</p>
 <p>可使用setuid函数设置实际用户ID和有效用户ID，用setgid函数设置实际组ID和有效组ID。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setuid</span><span class="params">(<span class="keyword">uid_t</span> uid)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setgid</span><span class="params">(<span class="keyword">gid_t</span> gid)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>更改用户ID的规则：</p>
@@ -1263,7 +1263,7 @@
 <p>若其中任一参数值为-1，则表示相应的ID应当保持不变。</p>
 <p>规则很简单：一个非特权用户总能交换实际用户ID和有效用户ID。这就允许一个设置用户ID程序交换成用户的普通权限，以后又可再次交换回设置用户ID权限。</p>
 <h5 id="函数-seteuid-和-setegid"><a href="#函数-seteuid-和-setegid" class="headerlink" title="函数 seteuid 和 setegid"></a>函数 seteuid 和 setegid</h5><p>只更改有效用户ID和有效组ID。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">seteuid</span><span class="params">(<span class="keyword">uid_t</span> uid)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setegit</span><span class="params">(<span class="keyword">gid_t</span> gid)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">seteuid</span><span class="params">(<span class="keyword">uid_t</span> uid)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setegid</span><span class="params">(<span class="keyword">gid_t</span> gid)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>一个非特权用户可将其有效用户ID设置为其实际用户ID或其保存的设置用户ID。对于一个特权用户，则可以将有效用户ID设置为uid。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210520092416680.png" alt="image-20210520092416680"></p>
 <h3 id="8-13-函数system"><a href="#8-13-函数system" class="headerlink" title="8.13 函数system"></a>8.13 函数system</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">system</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *cmdstring)</span></span>;</span><br></pre></td></tr></table></figure>
@@ -1340,15 +1340,92 @@
 <li>该进程成为一个新进程组的组长进程。新进程组ID是该调用进程的进程ID。</li>
 <li>该进程没有控制终端。如果在调用setsid之前该进程有一个控制终端，那么这种联系也被切断。</li>
 </ul>
-<p>如果该调用进程已经是一个进程组的组长，则此函数返回出错。为了保证不处于这种情况，通常限调用fork，然后使其父进程终止，而子进程则继续。因为子进程继承了父进程的进程组ID，而其进程ID则使新分配的，两者不可能相等，这就保证了子进程不是一个进程组的组长。</p>
+<p>如果该调用进程已经是一个进程组的组长，则此函数返回出错。为了保证不处于这种情况，通常先调用fork，然后使其父进程终止，而子进程则继续。因为子进程继承了父进程的进程组ID，而其进程ID则是新分配的，两者不可能相等，这就保证了子进程不是一个进程组的组长。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回会话首进程的进程组ID；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getsid</span><span class="params">(<span class="keyword">pid_t</span> pid)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>如若pid是0，getsid返回调用进程的会话首进程的进程组ID。如果pid并不属于调用者所在的会话，那么调用进程就不能得到该会话首进程的进程组ID。</p>
 <h3 id="9-6-控制终端"><a href="#9-6-控制终端" class="headerlink" title="9.6 控制终端"></a>9.6 控制终端</h3><p>会话和进程组还有一些其他特性：</p>
 <ul>
 <li>一个会话可以有一个<em>控制终端</em>。这通常是终端设备或伪终端内设备。</li>
 <li>建立与控制终端连接的会话首进程被称为控制进程。</li>
+<li>一个会话中的几个进程组可以被分成一个前台进程组以及一个或多个后台进程组。</li>
+<li>如果一个会话有一个控制终端，则它有一个前台进程组，其他进程组为后台进程组。</li>
+<li>无论何时键入终端的中断键，都会将中断信号发送至前台进程组的所有进程。</li>
+<li>无论何时键入终端的退出键，都会将退出信号发送至前台进程组的所有进程。</li>
+<li>无论终端接口检测到调制解调器（或网络）已经断开，则将挂断信号发送至控制进程（会话首进程）。</li>
 </ul>
-<h2 id="第10章-信号"><a href="#第10章-信号" class="headerlink" title="第10章 信号"></a>第10章 信号</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210521085957751.png" alt="image-20210521085957751"></p>
+<p>登陆时，将自动建立控制终端。</p>
+<h3 id="9-8-作业控制"><a href="#9-8-作业控制" class="headerlink" title="9.8 作业控制"></a>9.8 作业控制</h3><p>作业控制允许在一个终端上启动多个作业（进程组），它控制哪一个作业可以访问该终端以及哪些作业在后台运行。作业控制要求以下3种形式的支持：</p>
+<ul>
+<li>支持作业控制的shell</li>
+<li>内核中的终端驱动程序必须支持作业控制</li>
+<li>内核必须提供对某些作业控制信号的支持</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210521090709179.png" alt="image-20210521090709179"></p>
+<h2 id="第10章-信号"><a href="#第10章-信号" class="headerlink" title="第10章 信号"></a>第10章 信号</h2><h3 id="10-1-引言"><a href="#10-1-引言" class="headerlink" title="10.1 引言"></a>10.1 引言</h3><p>信号是软件中断。信号提供了一种处理异步事件的方法。</p>
+<h3 id="10-2-信号概念"><a href="#10-2-信号概念" class="headerlink" title="10.2 信号概念"></a>10.2 信号概念</h3><p>每个信号有一个名字，这些名字都以3个字符SIG开头，如：</p>
+<ul>
+<li>SIGABRT：夭折信号，当进程调用abort函数时产生这种信号</li>
+<li>SIGALRM：闹钟信号，由alarm函数设置定时器超时后将产生此信号</li>
+</ul>
+<p>头文件<code>signal.h</code>中，信号名都被定义为<strong>正整数常量</strong>。不存在编号为0的信号，POSIX.1将此信号编号值称为空信号。</p>
+<p>信号产生：</p>
+<ul>
+<li>终端产生（Ctrl+C）</li>
+<li>硬件异常（除以0）</li>
+<li>kill函数或kill命令</li>
+<li>软件条件（管道读进程已终止后，一个进程写此管道）</li>
+</ul>
+<p>信号处理方式：</p>
+<ul>
+<li>忽略此信号：大多数信号都可用这种方式处理，但有两种信号却绝不能被忽略：SIGKILL和SIGSTOP。</li>
+<li>捕捉信号：为做到这一点，要通知内核在某种信号发生时，调用一个用户函数，执行事件处理。</li>
+<li>执行系统默认动作：大多数信号的系统默认动作是终止该进程。</li>
+</ul>
+<h3 id="10-3-函数signal"><a href="#10-3-函数signal" class="headerlink" title="10.3 函数signal"></a>10.3 函数signal</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回以前的信号处理配置；若出错，返回SIG_ERR */</span></span><br><span class="line"><span class="keyword">void</span> (*signal(<span class="keyword">int</span> signo, <span class="keyword">void</span> (*func)(<span class="keyword">int</span>)))(<span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
+<p>signo是上一节所说的信号名。func的值是常量SIG_IGN、常量SIG_DFL或当接到此信号后要调用的函数的地址，该函数被称为<strong>信号处理程序</strong>或<strong>信号捕捉函数</strong>。</p>
+<p>signal函数返回一个函数指针，而该指针所指向的函数无返回值，带一个整型参数。</p>
+<p>上述声明太复杂，下面是简化的声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="keyword">void</span> <span class="title">Sigfunc</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function">Sigfunc *<span class="title">signal</span><span class="params">(<span class="keyword">int</span>, Sigfunc *)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>当执行一个程序时，所有信号的状态都是系统默认或忽略。通常，所有信号都被设置为它们的默认动作，除非调用exec的进程忽略该信号。确切地讲，exec函数将原先设置为要捕捉地信号都更改为默认动作，其他信号的状态则不变（一个进程原先要捕捉的信号，当其执行一个新程序后，就不能再捕捉了，因为信号捕捉函数的地址很可能在所执行的新程序文件中已无意义）。</p>
+<p>signal函数的限制：不改变信号的处理方式就不能确定信号的当前处理方式。</p>
+<h3 id="10-4-不可靠信号"><a href="#10-4-不可靠信号" class="headerlink" title="10.4 不可靠信号"></a>10.4 不可靠信号</h3><p>早期的UNIX版本中，信号是不可靠的，信号可能会丢失：一个信号发生了，但进程却可能不知道这一点。同时，进程对信号的控制能力也很差，它能捕捉信号或忽略它。</p>
+<p>有时用户希望通知内核阻塞某个信号：不要忽略该信号，在其发生时记住它，然后在进程做好了准备时再通知它。这种阻塞信号的能力当时并不具备。</p>
+<h3 id="10-5-中断的系统调用"><a href="#10-5-中断的系统调用" class="headerlink" title="10.5 中断的系统调用"></a>10.5 中断的系统调用</h3><p>早期UNIX系统的一个特性是：如果进程在执行一个低速系统调用而阻塞期间捕捉到一个信号，则该系统调用就被中断不再继续执行。该系统调用返回出错，其errno设置为EINTR。这样处理是因为一个信号发生了，进程捕捉到它，这意味着已经发生了某些事情，所以是个好机会应当唤醒阻塞的系统调用。</p>
+<p>低速系统调用：可能会使进程永远阻塞的一类系统调用。</p>
+<p>与被中断的系统调用相关的问题是必须显式地处理出错返回：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">again:</span><br><span class="line">	<span class="keyword">if</span> ((n = read(fd, buf, BUFFSIZE)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (errno = EINTR)</span><br><span class="line">            <span class="keyword">goto</span> again;  <span class="comment">/* just an interrupted system call */</span></span><br><span class="line">        <span class="comment">/* handle other errors */</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>为帮助应用程序使其不必处理被中断地系统调用，引进了某些被中断系统调用的自动重启动：ioctl、read、readv、write、writev、wait和waitpid。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210521102217768.png" alt="image-20210521102217768"></p>
+<h3 id="10-6-可重入函数"><a href="#10-6-可重入函数" class="headerlink" title="10.6 可重入函数"></a>10.6 可重入函数</h3><p><img src="https://cdn.jsdelivr.net/gh/qinglew/ImageHost/image-20210521102709874.png" alt="image-20210521102709874"></p>
+<p>没有列入上表的大多数函数是不可重入的。</p>
+<h3 id="10-8-可靠信号术语和语义"><a href="#10-8-可靠信号术语和语义" class="headerlink" title="10.8 可靠信号术语和语义"></a>10.8 可靠信号术语和语义</h3><p>当造成信号的事件发生时，为进程产生一个信号，这个过程叫做信号<strong>产生</strong>。信号产生时，内核通常在进程表中以某种形式设置一个标志，这个过程叫做信号<strong>递送</strong>。</p>
+<p>在信号产生和递送之间的时间间隔内，称信号是未决的（pending）。</p>
+<p>进程可以选用“阻塞信号调用”。如果为进程产生了一个阻塞的信号，而且对该信号的动作是系统默认动作或捕捉该信号，则为该进程将此信号保持为未决状态，直到该进程对此信号解除了阻塞，或者将对此信号的动作更改为忽略。内核在递送一个原来被阻塞的信号给进程时，才决定对它的处理方式。于是进程在信号递送给它之前仍可改变对该信号的动作。</p>
+<p>进程调用sigpending函数来判定哪些信号是设置为阻塞并处于未决状态的。</p>
+<h3 id="10-9-函数kill和raise"><a href="#10-9-函数kill和raise" class="headerlink" title="10.9 函数kill和raise"></a>10.9 函数kill和raise</h3><p>kill函数将信号发送给进程或进程组。raise函数则允许进程想自身发送信号。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kill</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">int</span> signo)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">raise</span><span class="params">(<span class="keyword">int</span> signo)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>调用raise(signo)等价于调用kill(getpid(), signo)。</p>
+<p>kill的pid参数有以下4种不同的情况</p>
+<ul>
+<li>pid &gt; 0：将该信号发送给进程ID为pid的进程</li>
+<li>pid == 0：将该信号发送给与发送进程属于同一进程组的所有进程（这些进程的进程组ID等于发送进程的进程组ID），而且发送进程具有权限向这些进程发送信号。</li>
+<li>pid &lt; 0：将该信号发送给其他进程组ID等于pid绝对值，而且发送进程具有权限向其发送信号的所有进程。（所有进程不包括系统进程集中的进程）</li>
+<li>pid == -1：将该信号发送给发送进程有权限向他们发送信号的所有进程。（所有进程并不包括系统进程集中的进程）</li>
+</ul>
+<p>如上所述，进程将信号发送给其他进程需要权限。</p>
+<p>POSIX.1将信号编号为0定义为空信号。如果signo参数是0，则kill仍执行正常的错误检查，但不发送信号。这常被用来确定一个特定进程是否仍然存在。如果向一个并不存在的进程发送空信号，则kill返回-1，errno被设置为ESRCH。</p>
+<h3 id="10-10-函数alarm和pause"><a href="#10-10-函数alarm和pause" class="headerlink" title="10.10 函数alarm和pause"></a>10.10 函数alarm和pause</h3><p>alarm函数可以设置一个定时器，在将来的某个时刻该定时器会超时。当定时器超时时，产生SIGALRM信号。如果忽略或不捕捉信号，则其默认动作是终止调用该alarm函数的进程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 返回0或以前设置的闹钟时间的余留秒数 */</span></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">alarm</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> seconds)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>每个进程只能有一个闹钟时间。如果在调用alarm时，之前已为该进程注册的闹钟时间还没有超时，则该闹钟时间的余留值作为本次alarm函数调用的值返回。以前注册的闹钟时间则被新值代替。如果本次调用的seconds值为0，则取消以前的闹钟时间，将其余留值作为本次alarm调用的返回值。</p>
+<p>pause函数使调用进程挂起直至捕捉到一个信号。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pause</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>只有执行一个信号处理程序并从其返回时，pause才返回。在这种情况下，pause返回-1，errno设置为EINTR。</p>
+<h3 id="10-11-信号集"><a href="#10-11-信号集" class="headerlink" title="10.11 信号集"></a>10.11 信号集</h3><p>我们需要一个能表示多个信号——信号集的数据类型。sigset_t用于表示信号集，且定义了下列5种处理信号集的函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若成功，返回0；若出错，返回-1 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigemptyset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>)</span></span>;  <span class="comment">// 初始化set，清除所有信号</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigfillset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>)</span></span>;   <span class="comment">// 初始化set，使其包含所有信号</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigaddset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">int</span> signo)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigdelset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">int</span> signo)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 若真，返回1；若假，返回0 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigismember</span><span class="params">(<span class="keyword">const</span> <span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">int</span> signo)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>所有应用程序在使用信号集前，要对该信号集调用sigemptyset或sigfillset一次。</p>
+<p>这些函数以及sigset_t实际都是使用位操作实现的，某一位代表一个信号。</p>
+
         </div>
 
         
@@ -1364,7 +1441,7 @@
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">C++ Primer Plus学习记录</span>
-                                <span class="post-nav-item">Next posts</span>
+                                <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -1397,7 +1474,7 @@
         </div>
         
         <div class="theme-info info-item">
-            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
         
     </div>

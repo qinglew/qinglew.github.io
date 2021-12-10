@@ -62,7 +62,7 @@
                             <a class=""
                                href="/"
                             >
-                                首页
+                                HOME
                             </a>
                         </li>
                     
@@ -70,7 +70,7 @@
                             <a class=""
                                href="/archives"
                             >
-                                归档
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -78,7 +78,7 @@
                             <a class=""
                                href="/categories"
                             >
-                                分类
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -86,7 +86,7 @@
                             <a class=""
                                href="/tags"
                             >
-                                标签
+                                TAGS
                             </a>
                         </li>
                     
@@ -94,7 +94,7 @@
                             <a class=""
                                href="/about"
                             >
-                                关于
+                                ABOUT
                             </a>
                         </li>
                     
@@ -115,27 +115,27 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">关于</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -212,58 +212,14 @@
 <p>切换默认终端:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -s /bin/zsh</span></span><br></pre></td></tr></table></figure>
 <p>执行完上述步骤后退出登录或重启。</p>
-<h2 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h2><p>Github:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>curl</td>
-<td><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></td>
-</tr>
-<tr>
-<td>wget</td>
-<td><code>sh -c &quot;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></td>
-</tr>
-<tr>
-<td>fetch</td>
-<td><code>sh -c &quot;$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></td>
-</tr>
-</tbody>
-</table>
-</div>
+<h2 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h2><p>安装wget:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt install wget</span></span><br></pre></td></tr></table></figure>
+<p>从github安装oh-my-zsh:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sh -c <span class="string">&quot;<span class="subst">$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span></span><br></pre></td></tr></table></figure>
 <p>Github访问不了，可以使用Gitee:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>curl</td>
-<td><code>sh -c &quot;$(curl -fsSL https://gitee.com/abeir/oh-my-zsh/raw/master/tools/install.sh)&quot;</code></td>
-</tr>
-<tr>
-<td>wget</td>
-<td><code>sh -c &quot;$(wget -O- https://gitee.com/abeir/oh-my-zsh/raw/master/tools/install.sh)&quot;</code></td>
-</tr>
-<tr>
-<td>fetch</td>
-<td><code>sh -c &quot;$(fetch -o - https://gitee.com/abeir/oh-my-zsh/raw/master/tools/install.sh)&quot;</code></td>
-</tr>
-</tbody>
-</table>
-</div>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sh -c <span class="string">&quot;<span class="subst">$(wget -O- https://gitee.com/abeir/oh-my-zsh/raw/master/tools/install.sh)</span>&quot;</span></span></span><br></pre></td></tr></table></figure>
 <p>安装完zsh后，环境变量保存在配置文件<code>~/.zshrc</code>中。</p>
-<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><h3 id="语法高亮洁zsh-syntax-highlighting"><a href="#语法高亮洁zsh-syntax-highlighting" class="headerlink" title="语法高亮洁zsh-syntax-highlighting"></a>语法高亮洁zsh-syntax-highlighting</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git</span><br><span class="line">echo &quot;source $&#123;(q-)PWD&#125;/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&quot; &gt;&gt; $&#123;ZDOTDIR:-$HOME&#125;/.zshrc</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><h3 id="语法高亮洁zsh-syntax-highlighting"><a href="#语法高亮洁zsh-syntax-highlighting" class="headerlink" title="语法高亮洁zsh-syntax-highlighting"></a>语法高亮洁zsh-syntax-highlighting</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;source <span class="variable">$&#123;(q-)PWD&#125;</span>/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&quot;</span> &gt;&gt; <span class="variable">$&#123;ZDOTDIR:-<span class="variable">$HOME</span>&#125;</span>/.zshrc</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> ~/.zshrc</span></span><br></pre></td></tr></table></figure>
 <h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>如果碰到安装完后有些命令用不了，如conda等，需要查看原来的环境变量配置文件<code>~/.bashrc</code>，把里面相关的部分复制到<code>~/.zshrc</code>中即可。</p>
 
         </div>
@@ -281,7 +237,7 @@
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item"></span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -314,7 +270,7 @@
         </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
         
     </div>

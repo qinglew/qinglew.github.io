@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-05-26T15:12:08.037Z</updated>
+  <updated>2021-12-10T09:46:44.290Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu安装oh-my-zsh</title>
+    <link href="http://example.com/2021/12/10/oh-my-zsh/"/>
+    <id>http://example.com/2021/12/10/oh-my-zsh/</id>
+    <published>2021-12-10T09:32:08.000Z</published>
+    <updated>2021-12-10T09:46:44.290Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h2><p>查看当前终端:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$SHELL</span></span></span><br></pre></td></tr></table></figure><p>首先检查系统自带的终端:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /etc/shells</span></span><br></pre></td></tr></table></figure><p>如果系统不自带zsh，则使用apt命令安装:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt update</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> apt install zsh</span></span><br></pre></td></tr></table></figure><p>切换默认终端:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -s /bin/zsh</span></span><br></pre></td></tr></table></figure><p>执行完上述步骤后退出登录或重启。</p><h2 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h2><p>Github:</p><div class="table-container"><table><thead><tr><th>Method</th><th>Command</th></tr></thead><tbody><tr><td>curl</td><td><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></td></tr><tr><td>wget</td><td><code>sh -c &quot;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></td></tr><tr><td>fetch</td><td><code>sh -c &quot;$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></td></tr></tbody></table></div><p>Github访问不了，可以使用Gitee:</p><div class="table-container"><table><thead><tr><th>Method</th><th>Command</th></tr></thead><tbody><tr><td>curl</td><td><code>sh -c &quot;$(curl -fsSL https://gitee.com/abeir/oh-my-zsh/raw/master/tools/install.sh)&quot;</code></td></tr><tr><td>wget</td><td><code>sh -c &quot;$(wget -O- https://gitee.com/abeir/oh-my-zsh/raw/master/tools/install.sh)&quot;</code></td></tr><tr><td>fetch</td><td><code>sh -c &quot;$(fetch -o - https://gitee.com/abeir/oh-my-zsh/raw/master/tools/install.sh)&quot;</code></td></tr></tbody></table></div><p>安装完zsh后，环境变量保存在配置文件<code>~/.zshrc</code>中。</p><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><h3 id="语法高亮洁zsh-syntax-highlighting"><a href="#语法高亮洁zsh-syntax-highlighting" class="headerlink" title="语法高亮洁zsh-syntax-highlighting"></a>语法高亮洁zsh-syntax-highlighting</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git</span><br><span class="line">echo &quot;source $&#123;(q-)PWD&#125;/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&quot; &gt;&gt; $&#123;ZDOTDIR:-$HOME&#125;/.zshrc</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure><h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>如果碰到安装完后有些命令用不了，如conda等，需要查看原来的环境变量配置文件<code>~/.bashrc</code>，把里面相关的部分复制到<code>~/.zshrc</code>中即可。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;安装zsh&quot;&gt;&lt;a href=&quot;#安装zsh&quot; class=&quot;headerlink&quot; title=&quot;安装zsh&quot;&gt;&lt;/a&gt;安装zsh&lt;/h2&gt;&lt;p&gt;查看当前终端:&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+      
+    
+    
+    
+    
+    <category term="DevOps" scheme="http://example.com/tags/DevOps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2021/10/26/flow1/"/>
+    <id>http://example.com/2021/10/26/flow1/</id>
+    <published>2021-10-26T12:39:22.370Z</published>
+    <updated>2021-10-29T15:44:17.037Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="流模型一-NICE"><a href="#流模型一-NICE" class="headerlink" title="流模型一: NICE"></a>流模型一: NICE</h1><p>NICE: Non-linear Independent Components Estimation是ICLR 2015 Workshop收录的论文，这篇文章是流模型的基石。流模型的本质是利用变量变换公式通过极大似然估计学习一个非线性可逆变换，从而将数据的分布变换到一个先验分布上，且该先验分布的随机变量的各维度相互独立，这个先验分布我们通常使用标准高斯分布。</p><p>假设数据样本$x \in X$，$x \in \mathbb{R}^D$，$x$的分布可以写成如下形式：</p><script type="math/tex; mode=display">p_X\left(x\right) = p_H\left(f\left(x\right)\right)|{\rm det} \frac{\part f\left(x\right)}{\part x}|</script><p>$h = f\left(x\right)$为一个可逆变换，即$x = f^{-1}\left(h\right)$。$p_X\left(x\right)$为数据样本集$X$的分布，$p_H\left(f\left(x\right)\right)$为先验分布，其各分量相互独立，$\frac{\part f\left(x\right)}{\part x}$为$f$对$x$的雅克比矩阵，$\rm det$为求矩阵的行列式。基于上述公式，我们采用极大似然估计求解$f\left(x\right)$，即</p><script type="math/tex; mode=display">\max \mathbb{E}_{x\in X}\left(\log p_X\left(x\right)\right)</script><p>根据优化目标，可以得到：</p><script type="math/tex; mode=display">\log p_X\left(x\right) = \log p_H\left(f\left(x\right)\right) + \log |{\rm det} \frac{\part f\left(x\right)}{\part x}|</script><p>NICE的目标就是使得雅克比行列式和$f^{-1}$好求。</p><h2 id="通用耦合层-General-Coupling-Layer"><a href="#通用耦合层-General-Coupling-Layer" class="headerlink" title="通用耦合层 General Coupling Layer"></a>通用耦合层 General Coupling Layer</h2><p>$x$有维度$D$，我们将$x$按维数分成两部分$x_1 \in \mathbb{R}^{d}$和$x_2 \in \mathbb{R}^{D-d}$，$m$为一个定义在$\mathbb{R}^d$上的函数，通用耦合层定义为：</p><script type="math/tex; mode=display">h_1 = x_1 \\h_2 = g\left(x_2; m\left(x_1\right)\right)</script><p>$g : \mathbb{R}^{D-d} \times m\left(\mathbb{R}^d\right)\to \mathbb{R}^{D - d} $。其逆运算为：</p><script type="math/tex; mode=display">x_1 = h_1 \\x_2 = g^{-1}\left(h_2; m\left(h_1\right)\right)</script><p>如此一来，雅克比矩阵变成了:</p><script type="math/tex; mode=display">\frac{\part y}{\part x} = \left[\begin{array}{l}I_d & 0 \\\frac{\part h_2}{\part x_1} & \frac{\part y_2}{\part x_2}\end{array}\right]</script><p>三角矩阵的行列式为对角线元素之和，因此${\rm det} \frac{\part f\left(x\right)}{\part x} = \frac{\part y_2}{\part x_2}$。</p><h3 id="加性耦合层-Adaptive-Coupling-Layer"><a href="#加性耦合层-Adaptive-Coupling-Layer" class="headerlink" title="加性耦合层 Adaptive Coupling Layer"></a>加性耦合层 Adaptive Coupling Layer</h3><p>加性耦合层如下：</p><script type="math/tex; mode=display">h_1 = x_1 \\h_2 = x_2 + m\left(x_1\right)</script><p>因此，雅克比行列式为1。且其逆运算为：</p><script type="math/tex; mode=display">x_1 = h_1 \\x_2 = h_2 - m(h_1)</script><p>只考虑上面单个耦合层变换，并不能获得很好的非线性，因此将多个简单变换进行组合，获得更强的非线性:</p><script type="math/tex; mode=display">x = h^{0} \leftrightarrow h^{1} \leftrightarrow h^{2} \leftrightarrow \cdots \leftrightarrow h^{n} = h</script><p>由链式法则可知，多个加性耦合层组合后$f$对$x$的雅克比行列式仍为1。</p><p>由于其中一部分为恒等变换，如果耦合的顺序不变，整个耦合的第一部分仍为恒等变换，信息没有充分混合，因此需要引入交叉耦合，充分混合信息，以达到更强的非线性。</p><h2 id="尺度变换层-Rescaling"><a href="#尺度变换层-Rescaling" class="headerlink" title="尺度变换层 Rescaling"></a>尺度变换层 Rescaling</h2><p>由于$f$为可逆变换，因此$x$与$h$的维度一致，$h$是一个先验分布，可以认为它遍布整个$D$维空间，虽然$x$也同样具有$D$维，但它未必就真能遍布整个$D$维空间。流这种基于可逆变换的模型，天生就存在比较严重的维度浪费问题：输入数据明明都不是D维流形，但却要编码为一个D维流形。</p><p>为了解决这个问题，NICE引入尺度变换层，对编码出来的特征的每个维度都做尺度变换，即</p><script type="math/tex; mode=display">h = s \odot h^{n}</script><p>$s = {s_1, s_2, \dots, s_D}$。$s$也是一个要优化的参数向量，且其各分量非负，因此，雅克比行列式等于$\sum_{i=1}^D s_i$，优化目标为最大化：</p><script type="math/tex; mode=display">\log p_X\left(x\right) = \log\left(p_H\left(h\right)\right) + \sum_{i = 1}^{D}s_i</script><p>假设$p_H\left(h\right)$为正态分布，引入$s$相当于引入了方差作为参数，$s_i = \frac{1}{\sigma_i}$，$s_i$越大，方差越小，该维度的变化越小，如果方差为0，那么该特征就恒为均值0，该维度的分布坍缩为一个点，于是这意味着流形减少了一维。</p><h2 id="特征解耦"><a href="#特征解耦" class="headerlink" title="特征解耦"></a>特征解耦</h2><p>设置先验分布为各分量独立：</p><script type="math/tex; mode=display">\log p_X\left(x\right) = \sum_{d = 1}^{D} \log p_{H_d}\left(f_d\left(x\right)\right) + \log |{\rm det}\frac{\part f\left(x\right)}{\part x}| \\f\left(x\right) = \left(f_d\left(x\right)\right)_{d \le D}</script><p>实际上实现学习到一个好的特征，理想情况下各个维度之间应该是相互独立的，这样实现了特征的解耦，使得每个维度都有自己独立的含义。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;流模型一-NICE&quot;&gt;&lt;a href=&quot;#流模型一-NICE&quot; class=&quot;headerlink&quot; title=&quot;流模型一: NICE&quot;&gt;&lt;/a&gt;流模型一: NICE&lt;/h1&gt;&lt;p&gt;NICE: Non-linear Independent Components </summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>UNIX操作系统高级编程</title>

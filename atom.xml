@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-12-10T09:52:46.950Z</updated>
+  <updated>2021-12-10T10:12:10.433Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu下PyTorch深度学习环境搭建</title>
+    <link href="http://example.com/2021/12/10/pytorch-env/"/>
+    <id>http://example.com/2021/12/10/pytorch-env/</id>
+    <published>2021-12-10T09:55:45.000Z</published>
+    <updated>2021-12-10T10:12:10.433Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Anaconda安装"><a href="#Anaconda安装" class="headerlink" title="Anaconda安装"></a>Anaconda安装</h2><p>进入<a class="link"   href="https://www.anaconda.com/products/individual" >Anaconda官网<i class="fas fa-external-link-alt"></i></a>下载Linux版本，通常选择<em>64-bit (x86) Installer</em>。下载后，赋予文件可执行权限后使用root权限安装:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chmod +x Anaconda3-2021.11-Linux-x86_64.sh</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ./Anaconda3-2021.11-Linux-x86_64.sh</span></span><br></pre></td></tr></table></figure><h2 id="虚拟环境创建"><a href="#虚拟环境创建" class="headerlink" title="虚拟环境创建"></a>虚拟环境创建</h2><p>创建Python虚拟环境并激活:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> conda create -n pytorch python=3.7</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda activate pytorch</span></span><br></pre></td></tr></table></figure><h2 id="PyTorch安装"><a href="#PyTorch安装" class="headerlink" title="PyTorch安装"></a>PyTorch安装</h2><p>版本需参考GPU支持和安装的cuda版本</p><p>PyTorch 1.8.0:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> CUDA 10.2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=10.2 -c pytorch</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CUDA 11.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11.1 -c pytorch -c conda-forge</span></span><br></pre></td></tr></table></figure><p>PyTorch 1.7.1:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> CUDA 9.2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=9.2 -c pytorch</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CUDA 10.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CUDA 10.2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.2 -c pytorch</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CUDA 11.0</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch</span></span><br></pre></td></tr></table></figure><p>PyTorch 1.7.0:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> CUDA 9.2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=9.2 -c pytorch</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CUDA 10.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=10.1 -c pytorch</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CUDA 10.2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=10.2 -c pytorch</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CUDA 11.0</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=11.0 -c pytorch</span></span><br></pre></td></tr></table></figure><p>更多版本请参考<a class="link"   href="https://pytorch.org/get-started/previous-versions/" >PyTorch官网安装页面<i class="fas fa-external-link-alt"></i></a>.</p><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>进入python交互式解释器:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python</span></span><br></pre></td></tr></table></figure><p>执行GPU测试命令:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure><p>返回True表示GPU可用，返回False表示GPU不可用。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Anaconda安装&quot;&gt;&lt;a href=&quot;#Anaconda安装&quot; class=&quot;headerlink&quot; title=&quot;Anaconda安装&quot;&gt;&lt;/a&gt;Anaconda安装&lt;/h2&gt;&lt;p&gt;进入&lt;a class=&quot;link&quot;   href=&quot;https://www.</summary>
+      
+    
+    
+    
+    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="PyTorch" scheme="http://example.com/tags/PyTorch/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu安装oh-my-zsh</title>
